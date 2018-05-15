@@ -1,0 +1,31 @@
+
+WARNING from PE     0: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20180515 045503.125: Memuse(MB) at Memory HiWaterMark=  9.321E+01  1.077E+02  1.306E+00  9.449E+01
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.6518372
+RM JobID:   1071105.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Tue May 15 03:18:52 2018
+CurrTime:   Tue May 15 04:55:04 2018
+Walltime:   01:35:51 of 03:30:00
+ExitCode:   0
+BatchNode:  c3-batch2
+NodeList:   1505,1506,1507,1508
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z/runscript.o1071105
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z/runscript.e1071105
+========  END EPILOGUE  ========

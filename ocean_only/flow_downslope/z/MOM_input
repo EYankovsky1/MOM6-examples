@@ -40,7 +40,7 @@ NIGLOBAL = 640                  !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 900                  !
+NJGLOBAL = 4                    !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -129,7 +129,7 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 100.0                  !   [k]
+LENLAT =0.50                  !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 LENLON = 80.0                   !   [k]
                                 ! The longitudinal or x-direction length of the domain.
@@ -151,7 +151,7 @@ TOPO_CONFIG = "file"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     USER - call a user modified routine.
-TOPO_FILE = "topog3D.nc"        ! default = "topog.nc"
+TOPO_FILE = "topog.nc"          ! default = "topog.nc"
                                 ! The file from which the bathymetry is read.
 TOPO_VARNAME = "depth"          ! default = "depth"
                                 ! The name of the bathymetry variable in TOPO_FILE.
@@ -187,7 +187,7 @@ THICKNESS_CONFIG = "DOME2D"     !
                                 !     seamount - TBD AJA.
                                 !     USER - call a user modified routine.
 INIT_LAYERS_FROM_Z_FILE = True	! Doing this instead of TS_CONFIG="file" and TS_FILE="filename"
-TEMP_SALT_Z_INIT_FILE = "IC_TS3D.nc" 	!Initial conditions file
+TEMP_SALT_Z_INIT_FILE = "IC_TS.nc" 	!Initial conditions file
 Z_INIT_FILE_PTEMP_VAR = "PTEMP"	!Variable name for potential temperature
 Z_INIT_FILE_SALT_VAR = "SALT"	!Variable name for salt 
 Z_INIT_ALE_REMAPPING = True	!
@@ -214,7 +214,7 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     USER - call a user modified routine.
 IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 SPONGE_PTEMP_VAR = "Temp"       ! default = "Temp"
@@ -483,35 +483,35 @@ WIND_CONFIG = "zero"            !
                                 ! The character string that indicates how wind forcing
                                 ! is specified. Valid options include (file), (2gyre),
                                 ! (1gyre), (gyres), (zero), and (USER).
-LONGWAVE_FILE = "forcing3D.nc" 	!
+LONGWAVE_FILE = "forcing.nc" 	!
                                 ! The file with the longwave heat flux, in the variable
                                 ! given by LONGWAVE_FORCING_VAR.
-SHORTWAVE_FILE = "forcing3D.nc" 	!
+SHORTWAVE_FILE = "forcing.nc" 	!
                                 ! The file with the shortwave heat flux, in the variable
                                 ! given by SHORTWAVE_FORCING_VAR.
-EVAPORATION_FILE = "forcing3D.nc" !
+EVAPORATION_FILE = "forcing.nc" !
                                 ! The file with the evaporative moisture flux, in the
                                 ! variable given by EVAP_FORCING_VAR.
-LATENTHEAT_FILE = "forcing3D.nc" 	!
+LATENTHEAT_FILE = "forcing.nc" 	!
                                 ! The file with the latent heat flux, in the variable
                                 ! given by LATENT_FORCING_VAR.
-SENSIBLEHEAT_FILE = "forcing3D.nc" !
+SENSIBLEHEAT_FILE = "forcing.nc" !
                                 ! The file with the sensible heat flux, in the variable
                                 ! given by SENSIBLE_FORCING_VAR.
-RAIN_FILE = "forcing3D.nc" 	!
+RAIN_FILE = "forcing.nc" 	!
                                 ! The file with the liquid precipitation flux, in the
                                 ! variable given by RAIN_FORCING_VAR.
-SNOW_FILE = "forcing3D.nc" 	!
+SNOW_FILE = "forcing.nc" 	!
                                 ! The file with the frozen precipitation flux, in the
                                 ! variable given by SNOW_FORCING_VAR.
-RUNOFF_FILE = "forcing3D.nc" 	!
+RUNOFF_FILE = "forcing.nc" 	!
                                 ! The file with the fresh and frozen runoff/calving
                                 ! fluxes, in variables given by LIQ_RUNOFF_FORCING_VAR
                                 ! and FROZ_RUNOFF_FORCING_VAR.
-SSTRESTORE_FILE = "forcing3D.nc" 	!
+SSTRESTORE_FILE = "forcing.nc" 	!
                                 ! The file with the SST toward which to restore in the
                                 ! variable given by SST_RESTORE_VAR.
-SALINITYRESTORE_FILE = "forcing3D.nc" !
+SALINITYRESTORE_FILE = "forcing.nc" !
                                 ! The file with the surface salinity toward which to
                                 ! restore in the variable given by SSS_RESTORE_VAR.
  

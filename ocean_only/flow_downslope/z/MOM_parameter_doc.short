@@ -29,7 +29,7 @@ NIGLOBAL = 640                  !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 900                  !
+NJGLOBAL = 4                    !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -63,7 +63,7 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 100.0                  !   [k]
+LENLAT = 0.5                    !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 LENLON = 80.0                   !   [k]
                                 ! The longitudinal or x-direction length of the domain.
@@ -94,8 +94,6 @@ TOPO_CONFIG = "file"            !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
-TOPO_FILE = "topog3D.nc"        ! default = "topog.nc"
-                                ! The file from which the bathymetry is read.
 !MAXIMUM_DEPTH = 2499.817918463303 !   [m]
                                 ! The (diagnosed) maximum depth of the ocean.
 
@@ -183,7 +181,7 @@ INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
                                 ! longitude grid.
 
 ! === module MOM_initialize_layers_from_Z ===
-TEMP_SALT_Z_INIT_FILE = "IC_TS3D.nc" ! default = "temp_salt_z.nc"
+TEMP_SALT_Z_INIT_FILE = "IC_TS.nc" ! default = "temp_salt_z.nc"
                                 ! The name of the z-space input file used to initialize
                                 ! temperatures (T) and salinities (S). If T and S are not
                                 ! in the same file, TEMP_Z_INIT_FILE and SALT_Z_INIT_FILE
@@ -216,12 +214,12 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     USER - call a user modified routine.
 IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 
 ! === module MOM_sponge ===
-!Total sponge columns at h points = 72000 !
+!Total sponge columns at h points = 320 !
                                 ! The total number of columns where sponges are applied at h points.
 
 ! === module MOM_diag_mediator ===
@@ -388,14 +386,14 @@ Z_OUTPUT_GRID_FILE = "zgrid_output.nc" ! default = ""
 ! The following parameters are used for diabatic processes.
 
 ! === module MOM_KPP ===
-! This is the MOM wrapper to CVmix:KPP
-! See http://code.google.com/p/cvmix/
+! This is the MOM wrapper to CVMix:KPP
+! See http://cvmix.github.io/
 
-! === module MOM_diffConvection ===
-! This module implements enhanced diffusivity as a
-! function of static stability, N^2.
-CONVECTION%
-%CONVECTION
+! === module MOM_tidal_mixing ===
+! Vertical Tidal Mixing Parameterization
+
+! === module MOM_CVMix_conv ===
+! Parameterization of enhanced mixing due to convection via CVMix
 
 ! === module MOM_entrain_diffusive ===
 CORRECT_DENSITY = False         !   [Boolean] default = True
@@ -404,6 +402,9 @@ CORRECT_DENSITY = False         !   [Boolean] default = True
                                 ! mixing, as described in Hallberg (MWR, 2000).
 
 ! === module MOM_set_diffusivity ===
+
+! === module MOM_bkgnd_mixing ===
+! Adding static vertical background mixing coefficients
 KD = 0.0                        !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
@@ -461,35 +462,35 @@ ARCHAIC_OMIP_FORCING_FILE = False !   [Boolean] default = True
                                 ! the old German OMIP prescription that predated CORE. If
                                 ! false, use the variable groupings available from MOM
                                 ! output diagnostics of forcing variables.
-LONGWAVE_FILE = "forcing3D.nc"  !
+LONGWAVE_FILE = "forcing.nc"    !
                                 ! The file with the longwave heat flux, in the variable
                                 ! given by LONGWAVE_FORCING_VAR.
-SHORTWAVE_FILE = "forcing3D.nc" !
+SHORTWAVE_FILE = "forcing.nc"   !
                                 ! The file with the shortwave heat flux, in the variable
                                 ! given by SHORTWAVE_FORCING_VAR.
-EVAPORATION_FILE = "forcing3D.nc" !
+EVAPORATION_FILE = "forcing.nc" !
                                 ! The file with the evaporative moisture flux, in the
                                 ! variable given by EVAP_FORCING_VAR.
-LATENTHEAT_FILE = "forcing3D.nc" !
+LATENTHEAT_FILE = "forcing.nc"  !
                                 ! The file with the latent heat flux, in the variable
                                 ! given by LATENT_FORCING_VAR.
-SENSIBLEHEAT_FILE = "forcing3D.nc" !
+SENSIBLEHEAT_FILE = "forcing.nc" !
                                 ! The file with the sensible heat flux, in the variable
                                 ! given by SENSIBLE_FORCING_VAR.
-RAIN_FILE = "forcing3D.nc"      !
+RAIN_FILE = "forcing.nc"        !
                                 ! The file with the liquid precipitation flux, in the
                                 ! variable given by RAIN_FORCING_VAR.
-SNOW_FILE = "forcing3D.nc"      !
+SNOW_FILE = "forcing.nc"        !
                                 ! The file with the frozen precipitation flux, in the
                                 ! variable given by SNOW_FORCING_VAR.
-RUNOFF_FILE = "forcing3D.nc"    !
+RUNOFF_FILE = "forcing.nc"      !
                                 ! The file with the fresh and frozen runoff/calving
                                 ! fluxes, in variables given by LIQ_RUNOFF_FORCING_VAR
                                 ! and FROZ_RUNOFF_FORCING_VAR.
-SSTRESTORE_FILE = "forcing3D.nc" !
+SSTRESTORE_FILE = "forcing.nc"  !
                                 ! The file with the SST toward which to restore in the
                                 ! variable given by SST_RESTORE_VAR.
-SALINITYRESTORE_FILE = "forcing3D.nc" !
+SALINITYRESTORE_FILE = "forcing.nc" !
                                 ! The file with the surface salinity toward which to
                                 ! restore in the variable given by SSS_RESTORE_VAR.
 WIND_CONFIG = "zero"            !
