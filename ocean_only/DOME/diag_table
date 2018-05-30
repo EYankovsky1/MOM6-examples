@@ -44,7 +44,7 @@
 
 # Tracers:
 #=========
-#"ocean_model","tr_D1","tr1","trac_%4yr_%3dy","all",.false.,"none",2
+"ocean_model","tr_D1","tr1","trac_%4yr_%3dy","all",.false.,"none",2
 #"ocean_model","tr_D2","tr2","trac_%4yr_%3dy","all",.false.,"none",2
 #"ocean_model","tr_D3","tr3","trac_%4yr_%3dy","all",.false.,"none",2
 #"ocean_model","tr_D4","tr4","trac_%4yr_%3dy","all",.false.,"none",2

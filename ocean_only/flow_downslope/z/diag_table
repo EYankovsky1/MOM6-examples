@@ -21,6 +21,7 @@
 "ocean_model_z","salt","salt","prog_z","all",.false.,"none",2
 "ocean_model_z","u","u","prog_z","all",.false.,"none",2
 "ocean_model_z","v","v","prog_z","all",.false.,"none",2
+"ocean_model_z","tr_D1","tr_D1","prog_z","all",.false.,"none",2
 #=============================================================================================
 #
 #====> This file can be used with diag_manager/v2.0a (or higher) <====

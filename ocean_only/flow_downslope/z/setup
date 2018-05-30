@@ -159,7 +159,7 @@ NIGLOBAL = 640                  !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 900                  !
+NJGLOBAL = 4                    !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -213,7 +213,7 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 100.0                  !   [k]
+LENLAT = 0.5                    !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 WESTLON = 0.0                   !   [k] default = 0.0
                                 ! The western longitude of the domain or the equivalent
@@ -249,7 +249,7 @@ TOPO_CONFIG = "file"            !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
-TOPO_FILE = "topog3D.nc"        ! default = "topog.nc"
+TOPO_FILE = "topog.nc"          ! default = "topog.nc"
                                 ! The file from which the bathymetry is read.
 TOPO_VARNAME = "depth"          ! default = "depth"
                                 ! The name of the bathymetry variable in TOPO_FILE.
@@ -293,6 +293,9 @@ F_0 = 1.43E-04                  !   [s-1] default = 0.0
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
+PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
+                                ! If true, each processor writes its own restart file,
+                                ! otherwise a single restart file is generated
 
 ! === module MOM_tracer_registry ===
 
@@ -323,9 +326,6 @@ DTFREEZE_DP = 0.0               !   [deg C Pa-1] default = 0.0
                                 ! temperature with pressure.
 
 ! === module MOM_restart ===
-PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
-                                ! If true, each processor writes its own restart file,
-                                ! otherwise a single restart file is generated
 RESTARTFILE = "MOM.res"         ! default = "MOM.res"
                                 ! The name-root of the restart file.
 LARGE_FILE_SUPPORT = True       !   [Boolean] default = True
@@ -512,6 +512,73 @@ REGRID_FILTER_DEEP_DEPTH = 0.0  !   [m] default = 0.0
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
+INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
+                                ! If true, intialize the layer thicknesses, temperatures,
+                                ! and salnities from a Z-space file on a latitude-
+                                ! longitude grid.
+
+! === module MOM_initialize_layers_from_Z ===
+TEMP_SALT_Z_INIT_FILE = "IC_TS.nc" ! default = "temp_salt_z.nc"
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures (T) and salinities (S). If T and S are not
+                                ! in the same file, TEMP_Z_INIT_FILE and SALT_Z_INIT_FILE
+                                ! must be set.
+TEMP_Z_INIT_FILE = "IC_TS.nc"   ! default = "IC_TS.nc"
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures, only.
+SALT_Z_INIT_FILE = "IC_TS.nc"   ! default = "IC_TS.nc"
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures, only.
+Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
+                                ! The name of the potential temperature variable in
+                                ! TEMP_Z_INIT_FILE.
+Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
+                                ! The name of the salinity variable in
+                                ! SALT_Z_INIT_FILE.
+Z_INIT_HOMOGENIZE = False       !   [Boolean] default = False
+                                ! If True, then horizontally homogenize the interpolated
+                                ! initial conditions.
+Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
+                                ! If True, then remap straight to model coordinate from file.
+Z_INIT_REMAPPING_SCHEME = "PPM_IH4" ! default = "PPM_IH4"
+                                ! The remapping scheme to use if using Z_INIT_ALE_REMAPPING
+                                ! is True.
+Z_INIT_REMAP_GENERAL = False    !   [Boolean] default = False
+                                ! If false, only initializes to z* coordinates.
+                                ! If true, allows initialization directly to general coordinates.
+Z_INIT_REMAP_FULL_COLUMN = False !   [Boolean] default = False
+                                ! If false, only reconstructs profiles for valid data points.
+                                ! If true, inserts vanished layers below the valid data.
+Z_INIT_REMAP_OLD_ALG = False    !   [Boolean] default = True
+                                ! If false, uses the preferred remapping algorithm for initialization.
+                                ! If true, use an older, less robust algorithm for remapping.
+VELOCITY_CONFIG = "zero"        ! default = "zero"
+                                ! A string that determines how the initial velocities
+                                ! are specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (VELOCITY_FILE).
+                                !     zero - the fluid is initially at rest.
+                                !     uniform - the flow is uniform (determined by
+                                !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     USER - call a user modified routine.
+CONVERT_THICKNESS_UNITS = False !   [Boolean] default = False
+                                ! If true,  convert the thickness initial conditions from
+                                ! units of m to kg m-2 or vice versa, depending on whether
+                                ! BOUSSINESQ is defined. This does not apply if a restart
+                                ! file is read.
+DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
+                                ! If true,  depress the initial surface to avoid huge
+                                ! tsunamis when a large surface pressure is applied.
+TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
+                                ! If true, cuts way the top of the column for initial conditions
+                                ! at the depth where the hydrostatic presure matches the imposed
+                                ! surface pressure which is read from file.
+REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
+                                ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
+                                ! algorithm to push the initial grid to be consistent with the initial
+                                ! condition. Useful only for state-based and iterative coordinates.
 SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 ! A string that sets how the sponges are configured:
                                 !     file - read sponge properties from the file
@@ -525,7 +592,7 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     USER - call a user modified routine.
 IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 SPONGE_PTEMP_VAR = "Temp"       ! default = "Temp"
@@ -544,7 +611,7 @@ SPONGE_H_VAR = "h"              ! default = "h"
 ! === module MOM_sponge ===
 SPONGE_UV = False               !   [Boolean] default = False
                                 ! Apply sponges in u and v, in addition to tracers.
-!Total sponge columns at h points = 72000 !
+!Total sponge columns at h points = 320 !
                                 ! The total number of columns where sponges are applied at h points.
 
 ! === module MOM_diag_mediator ===
@@ -676,12 +743,12 @@ HTBL_SHELF = 10.0               !   [m] default = 10.0
                                 ! The thickness over which near-surface velocities are
                                 ! averaged for the drag law under an ice shelf.  By
                                 ! default this is the same as HBBL
-KV = 0.01                       !   [m2 s-1]
+KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
-KV_BBL_MIN = 0.01               !   [m2 s-1] default = 0.01
+KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
-KV_TBL_MIN = 0.01               !   [m2 s-1] default = 0.01
+KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the top boundary layer.
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
@@ -824,7 +891,7 @@ MASS_WEIGHT_IN_PRESSURE_GRADIENT = False !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-KH = 0.01                       !   [m2 s-1] default = 0.0
+KH = 1.0E-04                    !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_BG_MIN = 0.0                 !   [m2 s-1] default = 0.0
                                 ! The minimum value allowed for Laplacian horizontal viscosity, KH.
@@ -893,7 +960,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KVML = 0.01                     !   [m2 s-1] default = 0.01
+KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical
                                 ! value is ~1e-2 m2 s-1. KVML is not used if
                                 ! BULKMIXEDLAYER is true.  The default is set by KV.
@@ -1275,7 +1342,7 @@ DISSIPATION_KD_MIN = 0.0        !   [m2 s-1] default = 0.0
 
 ! === module MOM_kappa_shear ===
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
-USE_JACKSON_PARAM = False       !   [Boolean] default = False
+USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
 RINO_CRIT = 0.25                !   [nondim] default = 0.25
@@ -1490,42 +1557,42 @@ ARCHAIC_OMIP_FORCING_FILE = False !   [Boolean] default = True
                                 ! the old German OMIP prescription that predated CORE. If
                                 ! false, use the variable groupings available from MOM
                                 ! output diagnostics of forcing variables.
-LONGWAVE_FILE = "forcing3D.nc"  !
+LONGWAVE_FILE = "forcing.nc"    !
                                 ! The file with the longwave heat flux, in the variable
                                 ! given by LONGWAVE_FORCING_VAR.
 LONGWAVE_FORCING_VAR = "LW"     ! default = "LW"
                                 ! The variable with the longwave forcing field.
-SHORTWAVE_FILE = "forcing3D.nc" !
+SHORTWAVE_FILE = "forcing.nc"   !
                                 ! The file with the shortwave heat flux, in the variable
                                 ! given by SHORTWAVE_FORCING_VAR.
 SHORTWAVE_FORCING_VAR = "SW"    ! default = "SW"
                                 ! The variable with the shortwave forcing field.
-EVAPORATION_FILE = "forcing3D.nc" !
+EVAPORATION_FILE = "forcing.nc" !
                                 ! The file with the evaporative moisture flux, in the
                                 ! variable given by EVAP_FORCING_VAR.
 EVAP_FORCING_VAR = "evap"       ! default = "evap"
                                 ! The variable with the evaporative moisture flux.
-LATENTHEAT_FILE = "forcing3D.nc" !
+LATENTHEAT_FILE = "forcing.nc"  !
                                 ! The file with the latent heat flux, in the variable
                                 ! given by LATENT_FORCING_VAR.
 LATENT_FORCING_VAR = "latent"   ! default = "latent"
                                 ! The variable with the latent heat flux.
-SENSIBLEHEAT_FILE = "forcing3D.nc" !
+SENSIBLEHEAT_FILE = "forcing.nc" !
                                 ! The file with the sensible heat flux, in the variable
                                 ! given by SENSIBLE_FORCING_VAR.
 SENSIBLE_FORCING_VAR = "sensible" ! default = "sensible"
                                 ! The variable with the sensible heat flux.
-RAIN_FILE = "forcing3D.nc"      !
+RAIN_FILE = "forcing.nc"        !
                                 ! The file with the liquid precipitation flux, in the
                                 ! variable given by RAIN_FORCING_VAR.
 RAIN_FORCING_VAR = "liq_precip" ! default = "liq_precip"
                                 ! The variable with the liquid precipitation flux.
-SNOW_FILE = "forcing3D.nc"      !
+SNOW_FILE = "forcing.nc"        !
                                 ! The file with the frozen precipitation flux, in the
                                 ! variable given by SNOW_FORCING_VAR.
 SNOW_FORCING_VAR = "froz_precip" ! default = "froz_precip"
                                 ! The variable with the frozen precipitation flux.
-RUNOFF_FILE = "forcing3D.nc"    !
+RUNOFF_FILE = "forcing.nc"      !
                                 ! The file with the fresh and frozen runoff/calving
                                 ! fluxes, in variables given by LIQ_RUNOFF_FORCING_VAR
                                 ! and FROZ_RUNOFF_FORCING_VAR.
@@ -1533,10 +1600,10 @@ LIQ_RUNOFF_FORCING_VAR = "liq_runoff" ! default = "liq_runoff"
                                 ! The variable with the liquid runoff flux.
 FROZ_RUNOFF_FORCING_VAR = "froz_runoff" ! default = "froz_runoff"
                                 ! The variable with the frozen runoff flux.
-SSTRESTORE_FILE = "forcing3D.nc" !
+SSTRESTORE_FILE = "forcing.nc"  !
                                 ! The file with the SST toward which to restore in the
                                 ! variable given by SST_RESTORE_VAR.
-SALINITYRESTORE_FILE = "forcing3D.nc" !
+SALINITYRESTORE_FILE = "forcing.nc" !
                                 ! The file with the surface salinity toward which to
                                 ! restore in the variable given by SSS_RESTORE_VAR.
 SST_RESTORE_VAR = "SST"         ! default = "SST"
