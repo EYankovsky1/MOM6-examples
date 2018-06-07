@@ -229,6 +229,8 @@ SPONGE_ETA_VAR = "eta"          ! default = "eta"
 SPONGE_H_VAR = "h"              ! default = "h"
                                 ! The name of the layer thickness variable in
                                 ! SPONGE_STATE_FILE.
+SPONGE_UV = True                !   [Boolean] default = False
+                                ! Apply sponges in u and v, in addition to tracers.
 USE_ELIZABETH_TRACER = True     ! Using my passive tracer configuration.
 CONT_SHELF_LENGTH = 15.0        ! Where tracer is set to 1.0 at surface.
 ! === module MOM_lateral_mixing_coeffs ===
@@ -264,7 +266,7 @@ LAPLACIAN = True                !   [Boolean] default = False
 BIHARMONIC = False              !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
-KH = 1.0E-02                    !   [m2 s-1] default = 0.0
+KH = 1.0E-04                    !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
@@ -294,7 +296,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KV = 1.0E-02                    !   [m2 s-1]
+KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
 KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
@@ -337,7 +339,7 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! near-bottom viscosity.
 
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
-USE_JACKSON_PARAM = False       !   [Boolean] default = False
+USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
 RINO_CRIT = 0.25                !   [nondim] default = 0.25
@@ -542,7 +544,7 @@ DT_FORCING = 20.0               !   [s] default = 300.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 1440.0                  !   [hours] default = 12.0
+DAYMAX = 1440.0                 !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

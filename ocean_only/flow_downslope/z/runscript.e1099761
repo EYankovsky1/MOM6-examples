@@ -1,0 +1,25 @@
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20180606 141738.869: Memuse(MB) at Memory HiWaterMark=  1.350E+02  7.233E+02  1.161E+01  1.392E+02
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.6760325
+RM JobID:   1099761.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      batch
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Wed Jun  6 02:55:12 2018
+CurrTime:   Wed Jun  6 14:17:42 2018
+Walltime:   11:22:05 of 15:30:00
+ExitCode:   0
+BatchNode:  c3-batch3
+NodeList:   501,535,544,567,568,584,586,596,603,607,610,613,618,621,639,659,681,687,690,698,700,717,720,741,766,779,781,782,783,789,790,801,806,811,819,824,825,834,835,853,865,866,867,869,878,912,914,940,941,950,952,953,954,957,1002,1032,1056,1114,1117,1119,1121,1124,1126,1163,1168,1169,1176,1178,1179,1182,1183,1185,1190,1195,1198,1199,1202,1215,1216,1218
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z/runscript.o1099761
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z/runscript.e1099761
+========  END EPILOGUE  ========

@@ -542,10 +542,14 @@ SPONGE_H_VAR = "h"              ! default = "h"
                                 ! SPONGE_STATE_FILE.
 
 ! === module MOM_sponge ===
-SPONGE_UV = False               !   [Boolean] default = False
+SPONGE_UV = True                !   [Boolean] default = False
                                 ! Apply sponges in u and v, in addition to tracers.
 !Total sponge columns at h points = 72000 !
                                 ! The total number of columns where sponges are applied at h points.
+!Total sponge columns at u points = 71100 !
+                                ! The total number of columns where sponges are applied at u points.
+!Total sponge columns at v points = 72000 !
+                                ! The total number of columns where sponges are applied at v points.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 1             ! default = 1
@@ -676,12 +680,12 @@ HTBL_SHELF = 10.0               !   [m] default = 10.0
                                 ! The thickness over which near-surface velocities are
                                 ! averaged for the drag law under an ice shelf.  By
                                 ! default this is the same as HBBL
-KV = 0.01                       !   [m2 s-1]
+KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
-KV_BBL_MIN = 0.01               !   [m2 s-1] default = 0.01
+KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
-KV_TBL_MIN = 0.01               !   [m2 s-1] default = 0.01
+KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the top boundary layer.
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
@@ -824,7 +828,7 @@ MASS_WEIGHT_IN_PRESSURE_GRADIENT = False !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-KH = 0.01                       !   [m2 s-1] default = 0.0
+KH = 1.0E-04                    !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_BG_MIN = 0.0                 !   [m2 s-1] default = 0.0
                                 ! The minimum value allowed for Laplacian horizontal viscosity, KH.
@@ -893,7 +897,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KVML = 0.01                     !   [m2 s-1] default = 0.01
+KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical
                                 ! value is ~1e-2 m2 s-1. KVML is not used if
                                 ! BULKMIXEDLAYER is true.  The default is set by KV.
@@ -1275,7 +1279,7 @@ DISSIPATION_KD_MIN = 0.0        !   [m2 s-1] default = 0.0
 
 ! === module MOM_kappa_shear ===
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
-USE_JACKSON_PARAM = False       !   [Boolean] default = False
+USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
 RINO_CRIT = 0.25                !   [nondim] default = 0.25
