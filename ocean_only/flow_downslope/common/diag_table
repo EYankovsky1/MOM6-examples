@@ -1,6 +1,7 @@
 "MOM resting experiment"
 1 1 1 0 0 0
-"prog",     1 ,"hours",1,"days","Time"
+"prog",6 ,"hours",1,"hours","Time"
+"prog_z",6,"hours",1,"hours","Time"
 
 #This is the field section of the diag_table.
 
@@ -9,10 +10,22 @@
 
 "ocean_model","u","u","prog","all",.false.,"none",2
 "ocean_model","v","v","prog","all",.false.,"none",2
-"ocean_model","h","h","prog","all",.false.,"none",1
+"ocean_model","h","h","prog","all",.false.,"none",2
 "ocean_model","e","e","prog","all",.false.,"none",2
 "ocean_model","temp","temp","prog","all",.false.,"none",2
 "ocean_model","salt","salt","prog","all",.false.,"none",2
+"ocean_model","rhoinsitu","rhoinsitu","prog","all",.false.,"none",2
+"ocean_model","tr_D1","tr_D1","prog","all",.false.,"none",2
+"ocean_model","rhopot0","rhopot0","prog","all",.false.,"none",2
+
+## z output
+#"ocean_model_z","temp","temp","prog_z","all",.false.,"none",2
+#"ocean_model_z","salt","salt","prog_z","all",.false.,"none",2
+#"ocean_model_z","u","u","prog_z","all",.false.,"none",2
+#"ocean_model_z","v","v","prog_z","all",.false.,"none",2
+#"ocean_model_z","tr_D1","tr_D1","prog_z","all",.false.,"none",2
+#"ocean_model_z","rhoinsitu","rhoinsitu","prog_z","all",.false.,"none",2
+#"ocean_model_z","rhopot0","rhopot0","prog_z","all",.false.,"none",2
 
 #=============================================================================================
 #

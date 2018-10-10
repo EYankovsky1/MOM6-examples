@@ -4,12 +4,12 @@
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping).
                                 ! If False, use the layered isopycnal algorithm.
-DT = 300.0                      !   [s]
+DT = 30.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 900.0                !   [s] default = 300.0
+DT_THERM = 90.0                 !   [s] default = 30.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -30,6 +30,8 @@ IC_OUTPUT_FILE = "Initial_state" ! default = "MOM_IC"
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
+REENTRANT_Y = True              !   [Boolean] default = False
+                                ! If true, the domain is meridionally reentrant.
 NIGLOBAL = 80                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
@@ -65,14 +67,14 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     degrees - degrees of latitude and longitude
                                 !     m - meters
                                 !     k - kilometers
-SOUTHLAT = 30.0                 !   [k]
+SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
 LENLAT = 40.0                   !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 LENLON = 800.0                  !   [k]
                                 ! The longitudinal or x-direction length of the domain.
-TOPO_CONFIG = "DOME2D"          !
+TOPO_CONFIG = "file"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
                                 !       specified by (TOPO_FILE).
@@ -99,15 +101,8 @@ TOPO_CONFIG = "DOME2D"          !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
-
-! === module DOME2D_initialization ===
-MAXIMUM_DEPTH = 4000.0          !   [m]
-                                ! The maximum depth of the ocean.
-MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
-                                ! If MASKING_DEPTH is unspecified, then anything shallower than
-                                ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
-                                ! If MASKING_DEPTH is specified, then all depths shallower than
-                                ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
+!MAXIMUM_DEPTH = 2499.817918463303 !   [m]
+                                ! The (diagnosed) maximum depth of the ocean.
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
@@ -117,23 +112,13 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
+F_0 = 1.43E-04                  !   [s-1] default = 0.0
+                                ! The reference value of the Coriolis parameter with the
+                                ! betaplane option.
 
 ! === module MOM_tracer_registry ===
 
 ! === module MOM_EOS ===
-EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
-                                ! EQN_OF_STATE determines which ocean equation of state
-                                ! should be used.  Currently, the valid choices are
-                                ! "LINEAR", "UNESCO", "WRIGHT", "NEMO" and "TEOS10".
-                                ! This is only used if USE_EOS is true.
-DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
-                                ! When EQN_OF_STATE=LINEAR,
-                                ! this is the partial derivative of density with
-                                ! temperature.
-DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
-                                ! When EQN_OF_STATE=LINEAR,
-                                ! this is the partial derivative of density with
-                                ! salinity.
 
 ! === module MOM_restart ===
 
@@ -158,14 +143,16 @@ COORD_CONFIG = "linear"         !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-LIGHTEST_DENSITY = 1034.0       !   [kg m-3] default = 1035.0
+LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1035.0
                                 ! The reference potential density used for the surface
                                 ! interface.
-DENSITY_RANGE = 1.0             !   [kg m-3] default = 2.0
+DENSITY_RANGE = 5.0             !   [kg m-3] default = 2.0
                                 ! The range of reference potential densities across
                                 ! all interfaces.
-GFS = 0.98                      !   [m s-2] default = 9.8
-                                ! The reduced gravity at the free surface.
+REMAP_UV_USING_OLD_ALG = False  !   [Boolean] default = True
+                                ! If true, uses the old remapping-via-a-delta-z method for
+                                ! remapping u and v. If false, uses the new method that remaps
+                                ! between grids described by an old and new thickness.
 REGRIDDING_COORDINATE_MODE = "RHO" ! default = "LAYER"
                                 ! Coordinate mode for vertical regridding.
                                 ! Choose among the following possibilities:
@@ -199,13 +186,13 @@ BOUNDARY_EXTRAPOLATION = True   !   [Boolean] default = False
                                 ! than PCM. E.g., if PPM is used for remapping, a
                                 ! PPM reconstruction will also be used within
                                 ! boundary cells.
-!ALE_RESOLUTION = 40*0.025      !   [kg m^-3]
+!ALE_RESOLUTION = 40*0.125      !   [kg m^-3]
                                 ! The distribution of vertical resolution for the target
                                 ! grid used for Eulerian-like coordinates. For example,
                                 ! in z-coordinate mode, the parameter is a list of level
                                 ! thicknesses (in m). In sigma-coordinate mode, the list
                                 ! is of non-dimensional fractions of the water column.
-!TARGET_DENSITIES = 1034.0, 1034.025, 1034.0500000000002, 1034.0750000000003, 1034.1000000000004, 1034.1250000000005, 1034.1500000000005, 1034.1750000000006, 1034.2000000000007, 1034.2250000000008, 1034.250000000001, 1034.275000000001, 1034.300000000001, 1034.3250000000012, 1034.3500000000013, 1034.3750000000014, 1034.4000000000015, 1034.4250000000015, 1034.4500000000016, 1034.4750000000017, 1034.5000000000018, 1034.525000000002, 1034.550000000002, 1034.575000000002, 1034.6000000000022, 1034.6250000000023, 1034.6500000000024, 1034.6750000000025, 1034.7000000000025, 1034.7250000000026, 1034.7500000000027, 1034.7750000000028, 1034.800000000003, 1034.825000000003, 1034.850000000003, 1034.8750000000032, 1034.9000000000033, 1034.9250000000034, 1034.9500000000035, 1034.9750000000035, 1035.0 !   [kg m^-3]
+!TARGET_DENSITIES = 1030.0, 1030.125, 1030.25, 1030.375, 1030.5, 1030.625, 1030.75, 1030.875, 1031.0, 1031.125, 1031.25, 1031.375, 1031.5, 1031.625, 1031.75, 1031.875, 1032.0, 1032.125, 1032.25, 1032.375, 1032.5, 1032.625, 1032.75, 1032.875, 1033.0, 1033.125, 1033.25, 1033.375, 1033.5, 1033.625, 1033.75, 1033.875, 1034.0, 1034.125, 1034.25, 1034.375, 1034.5, 1034.625, 1034.75, 1034.875, 1035.0 !   [kg m^-3]
                                 ! RHO target densities for interfaces
 REMAPPING_SCHEME = "PQM_IH4IH3" ! default = "PLM"
                                 ! This sets the reconstruction scheme used
@@ -222,60 +209,26 @@ REMAPPING_SCHEME = "PQM_IH4IH3" ! default = "PLM"
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "DOME2D"     !
-                                ! A string that determines how the initial layer
-                                ! thicknesses are specified for a new run:
-                                !     file - read interface heights from the file specified
-                                !     thickness_file - read thicknesses from the file specified
-                                !       by (THICKNESS_FILE).
-                                !     coord - determined by ALE coordinate.
-                                !     uniform - uniform thickness layers evenly distributed
-                                !       between the surface and MAXIMUM_DEPTH.
-                                !     list - read a list of positive interface depths.
-                                !     DOME - use a slope and channel configuration for the
-                                !       DOME sill-overflow test case.
-                                !     ISOMIP - use a configuration for the
-                                !       ISOMIP test case.
-                                !     benchmark - use the benchmark test case thicknesses.
-                                !     Neverland - use the Neverland test case thicknesses.
-                                !     search - search a density profile for the interface
-                                !       densities. This is not yet implemented.
-                                !     circle_obcs - the circle_obcs test case is used.
-                                !     DOME2D - 2D version of DOME initialization.
-                                !     adjustment2d - 2D lock exchange thickness ICs.
-                                !     sloshing - sloshing gravity thickness ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     soliton - Equatorial Rossby soliton.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     USER - call a user modified routine.
-TS_CONFIG = "DOME2D"            !
-                                ! A string that determines how the initial tempertures
-                                ! and salinities are specified for a new run:
-                                !     file - read velocities from the file specified
-                                !       by (TS_FILE).
-                                !     fit - find the temperatures that are consistent with
-                                !       the layer densities and salinity S_REF.
-                                !     TS_profile - use temperature and salinity profiles
-                                !       (read from TS_FILE) to set layer densities.
-                                !     benchmark - use the benchmark test case T & S.
-                                !     linear - linear in logical layer space.
-                                !     DOME2D - 2D DOME initialization.
-                                !     ISOMIP - ISOMIP initialization.
-                                !     adjustment2d - 2d lock exchange T/S ICs.
-                                !     sloshing - sloshing mode T/S ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     SCM_ideal_hurr - used in the SCM idealized hurricane test.
-                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
-                                !     USER - call a user modified routine.
-S_REF = 34.0                    !   [1e-3]
-                                ! Reference salinity
-T_REF = 0.0                     !   [C]
-                                ! Refernce temperature
-S_RANGE = 1.0                   !   [1e-3] default = 2.0
-                                ! Initial salinity range
+INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
+                                ! If true, intialize the layer thicknesses, temperatures,
+                                ! and salnities from a Z-space file on a latitude-
+                                ! longitude grid.
+
+! === module MOM_initialize_layers_from_Z ===
+TEMP_SALT_Z_INIT_FILE = "IC_TS.nc" ! default = "temp_salt_z.nc"
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures (T) and salinities (S). If T and S are not
+                                ! in the same file, TEMP_Z_INIT_FILE and SALT_Z_INIT_FILE
+                                ! must be set.
+Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
+                                ! The name of the potential temperature variable in
+                                ! TEMP_Z_INIT_FILE.
+Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
+                                ! The name of the salinity variable in
+                                ! SALT_Z_INIT_FILE.
+Z_INIT_REMAP_OLD_ALG = False    !   [Boolean] default = True
+                                ! If false, uses the preferred remapping algorithm for initialization.
+                                ! If true, use an older, less robust algorithm for remapping.
 
 ! === module MOM_diag_mediator ===
 
@@ -293,10 +246,6 @@ HBBL = 10.0                     !   [m]
                                 ! the thickness over which near-bottom velocities are
                                 ! averaged for the drag law if BOTTOMDRAGLAW is defined
                                 ! but LINEAR_DRAG is not.
-CDRAG = 0.0                     !   [nondim] default = 0.003
-                                ! CDRAG is the drag coefficient relating the magnitude of
-                                ! the velocity field to the bottom stress. CDRAG is only
-                                ! used if BOTTOMDRAGLAW is defined.
 DRAG_BG_VEL = 0.05              !   [m s-1] default = 0.0
                                 ! DRAG_BG_VEL is either the assumed bottom velocity (with
                                 ! LINEAR_DRAG) or an unresolved  velocity that is
@@ -332,6 +281,13 @@ ETA_TOLERANCE = 1.0E-12         !   [m] default = 2.0E-09
                                 ! than about 10^-15*MAXIMUM_DEPTH.
 
 ! === module MOM_CoriolisAdv ===
+NOSLIP = True                   !   [Boolean] default = False
+                                ! If true, no slip boundary conditions are used; otherwise
+                                ! free slip boundary conditions are assumed. The
+                                ! implementation of the free slip BCs on a C-grid is much
+                                ! cleaner than the no slip BCs. The use of free slip BCs
+                                ! is strongly encouraged, and no slip BCs are not used with
+                                ! the biharmonic viscosity.
 CORIOLIS_EN_DIS = True          !   [Boolean] default = False
                                 ! If true, two estimates of the thickness fluxes are used
                                 ! to estimate the Coriolis term, and the one that
@@ -350,7 +306,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-KH = 1.0E+04                    !   [m2 s-1] default = 0.0
+KH = 1.0E-04                    !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
@@ -362,10 +318,6 @@ BIHARMONIC = False              !   [Boolean] default = True
                                 ! BIHARMONIC may be used with LAPLACIAN.
 
 ! === module MOM_vert_friction ===
-DIRECT_STRESS = True            !   [Boolean] default = False
-                                ! If true, the wind stress is distributed over the
-                                ! topmost HMIX_STRESS of fluid (like in HYCOM), and KVML
-                                ! may be set to a very small value.
 U_TRUNC_FILE = "U_velocity_truncations" ! default = ""
                                 ! The absolute path to a file into which the accelerations
                                 ! leading to zonal velocity truncations are written.
@@ -384,7 +336,7 @@ KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical
                                 ! value is ~1e-2 m2 s-1. KVML is not used if
                                 ! BULKMIXEDLAYER is true.  The default is set by KV.
-MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
+MAXVEL = 50.0                   !   [m s-1] default = 3.0E+08
                                 ! The maximum velocity allowed before the velocity
                                 ! components are truncated.
 
@@ -414,7 +366,7 @@ BEBT = 0.2                      !   [nondim] default = 0.1
                                 ! 0 (for a forward-backward treatment of nonrotating
                                 ! gravity waves) to 1 (for a backward Euler treatment).
                                 ! In practice, BEBT must be greater than about 0.05.
-DTBT = 20.0                     !   [s or nondim] default = -0.98
+DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! The barotropic time step, in s. DTBT is only used with
                                 ! the split explicit time stepping. To set the time step
                                 ! automatically based the maximum stable value use 0, or
@@ -430,6 +382,13 @@ KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
 ! === module MOM_mixed_layer_restrat ===
 
 ! === module MOM_diag_to_Z ===
+Z_OUTPUT_GRID_FILE = "zgrid_output.nc" ! default = ""
+                                ! The file that specifies the vertical grid for
+                                ! depth-space diagnostics, or blank to disable
+                                ! depth-space output.
+!NK_ZSPACE (from file) = -1     !   [nondim]
+                                ! The number of depth-space levels.  This is determined
+                                ! from the size of the variable zw in the output grid file.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
@@ -461,6 +420,9 @@ KD = 0.0                        !   [m2 s-1]
 
 ! === module MOM_kappa_shear ===
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
+USE_JACKSON_PARAM = True        !   [Boolean] default = False
+                                ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
+                                ! shear mixing parameterization.
 
 ! === module MOM_CVMix_shear ===
 ! Parameterization of shear-driven turbulence via CVMix (various options)
@@ -471,12 +433,6 @@ KD = 0.0                        !   [m2 s-1]
 ! === module MOM_regularize_layers ===
 
 ! === module MOM_opacity ===
-PEN_SW_SCALE = 15.0             !   [m] default = 0.0
-                                ! The vertical absorption e-folding depth of the
-                                ! penetrating shortwave radiation.
-PEN_SW_FRAC = 0.42              !   [nondim] default = 0.0
-                                ! The fraction of the shortwave radiation that penetrates
-                                ! below the surface.
 
 ! === module MOM_tracer_advect ===
 
@@ -505,10 +461,46 @@ VARIABLE_WINDS = False          !   [Boolean] default = True
 VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the
                                 ! initialization of the model.
-BUOY_CONFIG = "NONE"            !
+BUOY_CONFIG = "file"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), (BFB) and (NONE).
+ARCHAIC_OMIP_FORCING_FILE = False !   [Boolean] default = True
+                                ! If true, use the forcing variable decomposition from
+                                ! the old German OMIP prescription that predated CORE. If
+                                ! false, use the variable groupings available from MOM
+                                ! output diagnostics of forcing variables.
+LONGWAVE_FILE = "forcing.nc"    !
+                                ! The file with the longwave heat flux, in the variable
+                                ! given by LONGWAVE_FORCING_VAR.
+SHORTWAVE_FILE = "forcing.nc"   !
+                                ! The file with the shortwave heat flux, in the variable
+                                ! given by SHORTWAVE_FORCING_VAR.
+EVAPORATION_FILE = "forcing.nc" !
+                                ! The file with the evaporative moisture flux, in the
+                                ! variable given by EVAP_FORCING_VAR.
+LATENTHEAT_FILE = "forcing.nc"  !
+                                ! The file with the latent heat flux, in the variable
+                                ! given by LATENT_FORCING_VAR.
+SENSIBLEHEAT_FILE = "forcing.nc" !
+                                ! The file with the sensible heat flux, in the variable
+                                ! given by SENSIBLE_FORCING_VAR.
+RAIN_FILE = "forcing.nc"        !
+                                ! The file with the liquid precipitation flux, in the
+                                ! variable given by RAIN_FORCING_VAR.
+SNOW_FILE = "forcing.nc"        !
+                                ! The file with the frozen precipitation flux, in the
+                                ! variable given by SNOW_FORCING_VAR.
+RUNOFF_FILE = "forcing.nc"      !
+                                ! The file with the fresh and frozen runoff/calving
+                                ! fluxes, in variables given by LIQ_RUNOFF_FORCING_VAR
+                                ! and FROZ_RUNOFF_FORCING_VAR.
+SSTRESTORE_FILE = "forcing.nc"  !
+                                ! The file with the SST toward which to restore in the
+                                ! variable given by SST_RESTORE_VAR.
+SALINITYRESTORE_FILE = "forcing.nc" !
+                                ! The file with the surface salinity toward which to
+                                ! restore in the variable given by SSS_RESTORE_VAR.
 WIND_CONFIG = "zero"            !
                                 ! The character string that indicates how wind forcing
                                 ! is specified. Valid options include (file), (2gyre),
@@ -517,11 +509,11 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 1800.0             !   [s] default = 300.0
+DT_FORCING = 1800.0             !   [s] default = 30.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 12.0                   !   [hours]
+DAYMAX = 2160.0                 !   [hours]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -532,20 +524,11 @@ RESTART_CONTROL = -1            ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 240.0                 !   [hours] default = 0.0
+RESTINT = 2160.0                !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
 
 ! === module MOM_write_cputime ===
-MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
-                                ! The maximum amount of cpu time per processor for which
-                                ! MOM should run before saving a restart file and
-                                ! quitting with a return value that indicates that a
-                                ! further run is required to complete the simulation.
-                                ! If automatic restarts are not desired, use a negative
-                                ! value for MAXCPU.  MAXCPU has units of wall-clock
-                                ! seconds, so the actual CPU time used is larger by a
-                                ! factor of the number of processors used.
 
 ! === module MOM_file_parser ===

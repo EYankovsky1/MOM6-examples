@@ -146,9 +146,6 @@ COORD_CONFIG = "linear"         !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-DENSITY_RANGE = 5.0             !   [kg m-3] default = 2.0
-                                ! The range of reference potential densities across
-                                ! all interfaces.
 REMAP_UV_USING_OLD_ALG = False  !   [Boolean] default = True
                                 ! If true, uses the old remapping-via-a-delta-z method for
                                 ! remapping u and v. If false, uses the new method that remaps

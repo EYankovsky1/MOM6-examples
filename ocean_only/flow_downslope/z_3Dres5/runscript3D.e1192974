@@ -1,0 +1,28 @@
+
+WARNING from PE     0: MEKE_init: Initializing MEKE with a local equilibrium balance.
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20180910 024054.021: Memuse(MB) at Memory HiWaterMark=  9.328E+01  9.855E+01  1.561E+00  9.556E+01
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.7643276
+RM JobID:   1192974.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript3D
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Mon Sep 10 02:27:04 2018
+CurrTime:   Mon Sep 10 02:40:54 2018
+Walltime:   00:13:39 of 15:30:00
+ExitCode:   0
+BatchNode:  c3-batch1
+NodeList:   696
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_3Dres5/runscript3D.o1192974
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_3Dres5/runscript3D.e1192974
+========  END EPILOGUE  ========

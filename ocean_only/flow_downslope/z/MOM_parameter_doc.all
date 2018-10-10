@@ -404,7 +404,7 @@ COORD_CONFIG = "linear"         !
 LIGHTEST_DENSITY = 1035.0       !   [kg m-3] default = 1035.0
                                 ! The reference potential density used for the surface
                                 ! interface.
-DENSITY_RANGE = 5.0             !   [kg m-3] default = 2.0
+DENSITY_RANGE = 2.0             !   [kg m-3] default = 2.0
                                 ! The range of reference potential densities across
                                 ! all interfaces.
 GFS = 9.8                       !   [m s-2] default = 9.8
