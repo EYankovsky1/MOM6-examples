@@ -212,7 +212,7 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     BFB - Sponge at the southern boundary of the domain
                                 !       for buoyancy-forced basin case.
                                 !     USER - call a user modified routine.
-IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
+IDEAL_IS_TNUDG = 10.0           !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
 IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
@@ -263,7 +263,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-BIHARMONIC = False              !   [Boolean] default = True
+BIHARMONIC = True               !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
 KH = 1.0E-04                    !   [m2 s-1] default = 0.0
@@ -273,9 +273,13 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
-
+SMAGORINSKY_KH = True           !   [Boolean] default = False
+                                ! If true, use a Smagorinsky nonlinear eddy viscosity.
+SMAG_LAP_CONST = 0.15            !   [nondim] default = 0.0
+                                ! The nondimensional biharmonic Smagorinsky constant,
+                                ! typically 0.15 - 0.06.
 ! === module MOM_vert_friction ===
-NOSLIP = True                   !   [Boolean] default = False
+NOSLIP = False                  !   [Boolean] default = False
                                 ! If true, no slip boundary conditions are used; otherwise
                                 ! free slip boundary conditions are assumed. The
                                 ! implementation of the free slip BCs on a C-grid is much
@@ -296,7 +300,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KV = 1.0E-04                    !   [m2 s-1]
+KV = 1.0E-5                     !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
 KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
@@ -319,6 +323,10 @@ BOTTOMDRAGLAW = True            !   [Boolean] default = True
                                 ! may be an assumed value or it may be based on the
                                 ! actual velocity in the bottommost HBBL, depending on
                                 ! LINEAR_DRAG.
+CHANNEL_DRAG = True             !   [Boolean] default = False
+                                ! If true, the bottom drag is exerted directly on each
+                                ! layer proportional to the fraction of the bottom it
+                                ! overlies.
 LINEAR_DRAG = True              !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag
                                 ! law is cdrag*DRAG_BG_VEL*u.
@@ -342,6 +350,8 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
 USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
+VERTEX_SHEAR = True             !   [Boolean] default = False
+                                ! If true, do the calculations of the shear-driven mixing
 RINO_CRIT = 0.25                !   [nondim] default = 0.25
                                 ! The critical Richardson number for shear mixing.
 SHEARMIX_RATE = 0.089           !   [nondim] default = 0.089
@@ -436,12 +446,12 @@ DTBT = 0                        !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
-KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
+KHTH = 0.0E                     !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-KD = 0.0                        !   [m2 s-1]
+KD = 1.0E-5                     !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
                                 ! may be used.
@@ -467,7 +477,8 @@ CORRECT_DENSITY = False         !   [Boolean] default = True
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-
+KHTR = 1.0E-4                   !   [m2 s-1] default = 0.0
+                                ! The background along-isopycnal tracer diffusivity.
 ! === module MOM_surface_forcing ===
 VARIABLE_WINDS = False          !   [Boolean] default = True
                                 ! If true, the winds vary in time after the initialization.
@@ -555,7 +566,7 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 720.0                 !   [hours] default = 0.0
+RESTINT = 1440.0                 !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.

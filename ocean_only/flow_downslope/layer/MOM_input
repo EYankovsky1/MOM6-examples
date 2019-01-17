@@ -55,7 +55,7 @@ DT = 20.0                       !   [s]
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 20.0                  !   [s] default = 300.0
+DT_THERM = 40.0                  !   [s] default = 300.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step.
@@ -94,7 +94,7 @@ COORD_CONFIG = "ts_profile"     !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "Coord_file_new.nc"	! Temperature and salinity coordinates (1D arrays)
+COORD_FILE = "Coord_file.nc"	! Temperature and salinity coordinates (1D arrays)
 P_REF = 0.0E+07                 !   [Pa] default = 2.0E+07
                                 ! The pressure that is used for calculating the coordinate
                                 ! density.  (1 Pa = 1e4 dbar, so 2e7 is commonly used.)
@@ -200,7 +200,7 @@ FIT_TO_TARGET_DENSITY_IC = False!   [Boolean] default = True
                                 ! This approach can be problematic, particularly in the
                                 ! high latitudes.
 REMAP_UV_USING_OLD_ALG = False  !
-Z_OUTPUT_GRID_FILE = "zgrid_output.nc" ! default = ""
+!Z_OUTPUT_GRID_FILE = "zgrid_output.nc" ! default = ""
                                 ! The file that specifies the vertical grid for
                                 ! depth-space diagnostics, or blank to disable
                                 ! depth-space output.
@@ -219,7 +219,9 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     BFB - Sponge at the southern boundary of the domain
                                 !       for buoyancy-forced basin case.
                                 !     USER - call a user modified routine.
-IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
+MIN_THICKNESS = 1.0E-12         !   [m] default = 0.001
+                                ! Minimum layer thickness
+IDEAL_IS_TNUDG = 2.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
 IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
@@ -270,19 +272,23 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-BIHARMONIC = False              !   [Boolean] default = True
+BIHARMONIC = True               !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
-KH = 1.0                        !   [m2 s-1] default = 0.0
+KH = 0.5                        !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
-
+SMAGORINSKY_KH = True           !   [Boolean] default = False
+                                ! If true, use a Smagorinsky nonlinear eddy viscosity.
+SMAG_LAP_CONST = 0.15            !   [nondim] default = 0.0
+                                ! The nondimensional biharmonic Smagorinsky constant,
+                                ! typically 0.15 - 0.06.
 ! === module MOM_vert_friction ===
-NOSLIP = True                   !   [Boolean] default = False
+NOSLIP = False                  !   [Boolean] default = False
                                 ! If true, no slip boundary conditions are used; otherwise
                                 ! free slip boundary conditions are assumed. The
                                 ! implementation of the free slip BCs on a C-grid is much
@@ -303,7 +309,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KV = 0.25                        !   [m2 s-1]
+KV = 1.0E-5                     !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
 KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
@@ -329,6 +335,10 @@ BOTTOMDRAGLAW = True            !   [Boolean] default = True
                                 ! may be an assumed value or it may be based on the
                                 ! actual velocity in the bottommost HBBL, depending on
                                 ! LINEAR_DRAG.
+CHANNEL_DRAG = True             !   [Boolean] default = False
+                                ! If true, the bottom drag is exerted directly on each
+                                ! layer proportional to the fraction of the bottom it
+                                ! overlies.
 LINEAR_DRAG = True              !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag
                                 ! law is cdrag*DRAG_BG_VEL*u.
@@ -351,6 +361,9 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
 USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
+VERTEX_SHEAR = True             !   [Boolean] default = False
+                                ! If true, do the calculations of the shear-driven mixing
+                                ! at the cell vertices (i.e., the vorticity points).
 RINO_CRIT = 0.25                !   [nondim] default = 0.25
                                 ! The critical Richardson number for shear mixing.
 SHEARMIX_RATE = 0.089           !   [nondim] default = 0.089
@@ -446,12 +459,18 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
-KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
+KHTH = 0.0                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-
+DETANGLE_INTERFACES = True      !   [Boolean] default = False
+                                ! If defined add 3-d structured enhanced interface height
+                                ! diffusivities to horizonally smooth jagged layers.
+!DETANGLE_TIMESCALE = 200.0      !   [s] default = 0.0
+                                ! A timescale over which maximally jagged grid-scale
+                                ! thickness variations are suppressed.  This must be
+                                ! longer than DT, or 0 to use DT.
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-KD = 0.0                        !   [m2 s-1]
+KD = 1.0E-5                     !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
                                 ! may be used.
@@ -477,7 +496,8 @@ CORRECT_DENSITY = False         !   [Boolean] default = True
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-
+KHTR = 0.5                      !   [m2 s-1] default = 0.0
+                                ! The background along-isopycnal tracer diffusivity.
 ! === module MOM_surface_forcing ===
 VARIABLE_WINDS = False          !   [Boolean] default = True
                                 ! If true, the winds vary in time after the initialization.
@@ -554,7 +574,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 1036.0                  !   [hours] default = 12.0
+DAYMAX = 1800.0                 !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -565,7 +585,7 @@ RESTART_CONTROL = 1            ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 720.0                !   [hours] default = 0.0
+RESTINT = 1800.0                !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.

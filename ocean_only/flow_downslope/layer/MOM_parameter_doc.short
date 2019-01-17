@@ -6,6 +6,13 @@ DT = 20.0                       !   [s]
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
+DT_THERM = 40.0                 !   [s] default = 20.0
+                                ! The thermodynamic and tracer advection time step.
+                                ! Ideally DT_THERM should be an integer multiple of DT
+                                ! and less than the forcing or coupling time-step, unless
+                                ! THERMO_SPANS_COUPLING is true, in which case DT_THERM
+                                ! can be an integer multiple of the coupling timestep.  By
+                                ! default DT_THERM is set to DT.
 C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a
                                 ! constant. This is only used if ENABLE_THERMODYNAMICS is
@@ -92,7 +99,6 @@ TOPO_CONFIG = "file"            !
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
-                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
@@ -146,7 +152,7 @@ COORD_CONFIG = "ts_profile"     !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "Coord_file_new.nc" !
+COORD_FILE = "Coord_file.nc"    !
                                 ! The file from which the coordinate temperatures and
                                 ! salinities are read.
 
@@ -215,7 +221,9 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     BFB - Sponge at the southern boundary of the domain
                                 !       for buoyancy-forced basin case.
                                 !     USER - call a user modified routine.
-IDEAL_IS_TNUDG = 1.0            !   [not defined] default = 0.0
+MIN_THICKNESS = 1.0E-12         !   [m] default = 0.001
+                                ! Minimum layer thickness
+IDEAL_IS_TNUDG = 2.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
 IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
@@ -230,6 +238,10 @@ IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
 ! === module MOM_lateral_mixing_coeffs ===
 
 ! === module MOM_set_visc ===
+CHANNEL_DRAG = True             !   [Boolean] default = False
+                                ! If true, the bottom drag is exerted directly on each
+                                ! layer proportional to the fraction of the bottom it
+                                ! overlies.
 LINEAR_DRAG = True              !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag
                                 ! law is cdrag*DRAG_BG_VEL*u.
@@ -250,7 +262,7 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! used with BOTTOMDRAGLAW. This might be
                                 ! Kv / (cdrag * drag_bg_vel) to give Kv as the minimum
                                 ! near-bottom viscosity.
-KV = 0.25                       !   [m2 s-1]
+KV = 1.0E-05                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
 BE = 0.7                        !   [nondim] default = 0.6
@@ -274,13 +286,6 @@ ETA_TOLERANCE = 1.0E-12         !   [m] default = 6.0E-09
                                 ! than about 10^-15*MAXIMUM_DEPTH.
 
 ! === module MOM_CoriolisAdv ===
-NOSLIP = True                   !   [Boolean] default = False
-                                ! If true, no slip boundary conditions are used; otherwise
-                                ! free slip boundary conditions are assumed. The
-                                ! implementation of the free slip BCs on a C-grid is much
-                                ! cleaner than the no slip BCs. The use of free slip BCs
-                                ! is strongly encouraged, and no slip BCs are not used with
-                                ! the biharmonic viscosity.
 CORIOLIS_EN_DIS = True          !   [Boolean] default = False
                                 ! If true, two estimates of the thickness fluxes are used
                                 ! to estimate the Coriolis term, and the one that
@@ -299,28 +304,20 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-KH = 1.0                        !   [m2 s-1] default = 0.0
+KH = 0.5                        !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky and Leith viscosities, and KH.
-BIHARMONIC = False              !   [Boolean] default = True
-                                ! If true, use a biharmonic horizontal viscosity.
-                                ! BIHARMONIC may be used with LAPLACIAN.
+SMAGORINSKY_KH = True           !   [Boolean] default = False
+                                ! If true, use a Smagorinsky nonlinear eddy viscosity.
+SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
+                                ! The nondimensional Laplacian Smagorinsky constant,
+                                ! often 0.15.
 
 ! === module MOM_vert_friction ===
-U_TRUNC_FILE = "U_velocity_truncations" ! default = ""
-                                ! The absolute path to a file into which the accelerations
-                                ! leading to zonal velocity truncations are written.
-                                ! Undefine this for efficiency if this diagnostic is not
-                                ! needed.
-V_TRUNC_FILE = "V_velocity_truncations" ! default = ""
-                                ! The absolute path to a file into which the accelerations
-                                ! leading to meridional velocity truncations are written.
-                                ! Undefine this for efficiency if this diagnostic is not
-                                ! needed.
 MAXVEL = 50.0                   !   [m s-1] default = 3.0E+08
                                 ! The maximum velocity allowed before the velocity
                                 ! components are truncated.
@@ -361,8 +358,9 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
-KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
-                                ! The background horizontal thickness diffusivity.
+DETANGLE_INTERFACES = True      !   [Boolean] default = False
+                                ! If defined add 3-d structured enhanced interface height
+                                ! diffusivities to horizonally smooth jagged layers.
 
 ! === module MOM_mixed_layer_restrat ===
 
@@ -371,7 +369,7 @@ KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 
-! === module MOM_KPP ===
+! === module MOM_CVMix_KPP ===
 ! This is the MOM wrapper to CVMix:KPP
 ! See http://cvmix.github.io/
 
@@ -391,7 +389,7 @@ CORRECT_DENSITY = False         !   [Boolean] default = True
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
-KD = 0.0                        !   [m2 s-1]
+KD = 1.0E-05                    !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
                                 ! may be used.
@@ -401,9 +399,19 @@ KD = 0.0                        !   [m2 s-1]
 USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
+VERTEX_SHEAR = True             !   [Boolean] default = False
+                                ! If true, do the calculations of the shear-driven mixing
+                                ! at the cell vertices (i.e., the vorticity points).
+KD_KAPPA_SHEAR_0 = 0.0          !   [m2 s-1] default = 1.0E-05
+                                ! The background diffusivity that is used to smooth the
+                                ! density and shear profiles before solving for the
+                                ! diffusivities. Defaults to value of KD.
 
 ! === module MOM_CVMix_shear ===
 ! Parameterization of shear-driven turbulence via CVMix (various options)
+
+! === module MOM_CVMix_ddiff ===
+! Parameterization of mixing due to double diffusion processes via CVMix
 
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
@@ -421,6 +429,8 @@ BULK_RI_ML = 0.25               !   [nondim]
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
+KHTR = 0.5                      !   [m2 s-1] default = 0.0
+                                ! The background along-isopycnal tracer diffusivity.
 
 ! === module MOM_neutral_diffusion ===
 ! This module implements neutral diffusion of tracers
@@ -493,12 +503,12 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 1440.0                 !   [hours]
+DAYMAX = 1800.0                 !   [hours]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
-RESTINT = 720.0                 !   [hours] default = 0.0
+RESTINT = 1800.0                !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
