@@ -221,7 +221,7 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     USER - call a user modified routine.
 MIN_THICKNESS = 1.0E-12         !   [m] default = 0.001
                                 ! Minimum layer thickness
-IDEAL_IS_TNUDG = 2.0            !   [not defined] default = 0.0
+IDEAL_IS_TNUDG = 10.0           !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
 IDEAL_IS_SPONGE_FILE = "sponge_IC.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
@@ -275,7 +275,7 @@ LAPLACIAN = True                !   [Boolean] default = False
 BIHARMONIC = True               !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
-KH = 0.1                        !   [m2 s-1] default = 0.0
+KH = 1.0E-4                     !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
@@ -457,10 +457,10 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 ! === module MOM_thickness_diffuse ===
 KHTH = 0.0                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-DETANGLE_INTERFACES = True      !   [Boolean] default = False
+!DETANGLE_INTERFACES = False    !   [Boolean] default = False
                                 ! If defined add 3-d structured enhanced interface height
                                 ! diffusivities to horizonally smooth jagged layers.
-DETANGLE_TIMESCALE = 200.0      !   [s] default = 0.0
+!DETANGLE_TIMESCALE = 200.0      !   [s] default = 0.0
                                 ! A timescale over which maximally jagged grid-scale
                                 ! thickness variations are suppressed.  This must be
                                 ! longer than DT, or 0 to use DT.
@@ -480,7 +480,7 @@ CORRECT_DENSITY = False         !   [Boolean] default = True
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-KHTR = 0.1                      !   [m2 s-1] default = 0.0
+KHTR = 1.0E-4                   !   [m2 s-1] default = 0.0
                                 ! The background along-isopycnal tracer diffusivity.
 ! === module MOM_surface_forcing ===
 VARIABLE_WINDS = False          !   [Boolean] default = True
@@ -554,7 +554,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 2000.0                 !   [hours] default = 12.0
+DAYMAX = 1440.0                 !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -565,7 +565,7 @@ RESTART_CONTROL = 1            ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 500.0                !   [hours] default = 0.0
+RESTINT = 1440.0                !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.

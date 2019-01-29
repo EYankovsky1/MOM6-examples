@@ -1,4 +1,0 @@
-#PBS -l size=80
-#PBS -l walltime=15:30:00
-
-aprun -n 2560 ../../../build/intel/ocean_only/repro/MOM6

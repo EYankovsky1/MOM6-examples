@@ -15,6 +15,12 @@
 "ocean_model","temp","temp","prog","all",.false.,"none",2
 "ocean_model","salt","salt","prog","all",.false.,"none",2
 "ocean_model","rhoinsitu","rhoinsitu","prog","all",.false.,"none",2
+"ocean_model","rhopot0","rhopot0","prog","all",.false.,"none",2
+"ocean_model","tr_D1","tr_D1","prog","all",.false.,"none",2
+"ocean_model","Kd_shear","Kd_shear","prog","all",.false.,"none",2
+"ocean_model","Kd_layer","Kd_layer","prog","all",.false.,"none",2
+"ocean_model","Khh","Khh","prog","all",.false.,"none",2
+"ocean_model","Kv_u","Kv_u","prog","all",.false.,"none",2
 
 # z output
 "ocean_model_z","temp","temp","prog_z","all",.false.,"none",2
@@ -22,7 +28,12 @@
 "ocean_model_z","u","u","prog_z","all",.false.,"none",2
 "ocean_model_z","v","v","prog_z","all",.false.,"none",2
 "ocean_model_z","tr_D1","tr_D1","prog_z","all",.false.,"none",2
+"ocean_model_z","rhopot0","rhopot0","prog_z","all",.false.,"none",2
 "ocean_model_z","rhoinsitu","rhoinsitu","prog_z","all",.false.,"none",2
+"ocean_model","Kd_shear","Kd_shear","prog_z","all",.false.,"none",2
+"ocean_model","Kd_layer","Kd_layer","prog_z","all",.false.,"none",2
+"ocean_model","Khh","Khh","prog_z","all",.false.,"none",2
+"ocean_model","Kv_u","Kv_u","prog_z","all",.false.,"none",2
 #=============================================================================================
 #
 #====> This file can be used with diag_manager/v2.0a (or higher) <====

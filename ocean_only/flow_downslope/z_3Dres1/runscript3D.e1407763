@@ -1,0 +1,25 @@
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20190127 051016.458: Memuse(MB) at Memory HiWaterMark=  1.165E+02  3.876E+02  5.411E+00  1.200E+02
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.8795683
+RM JobID:   1407763.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript3D
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Sat Jan 26 21:52:04 2019
+CurrTime:   Sun Jan 27 05:10:20 2019
+Walltime:   07:18:14 of 15:30:00
+ExitCode:   0
+BatchNode:  c3-batch1
+NodeList:   1283,1284,1288,1290,1300,1301,1304,1305,1306,1307,1346,1349,1351,1354,1374,1375,1376,1377,1378,1379,1380,1381,1387,1388,1391,1400,1401,1407,1414,1415,1416,1423,1426,1428,1431,1432,1440,1441,1442,1443,1444,1445,1446,1448,1449,1450,1451,1452,1453,1454,1455,1456,1457,1458,1459,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479,1480,1482,1483,1484,1485
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_3Dres1/runscript3D.o1407763
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_3Dres1/runscript3D.e1407763
+========  END EPILOGUE  ========

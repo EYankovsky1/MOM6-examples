@@ -7490,9 +7490,9 @@ WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY alrea
 Tabulating mpp_clock statistics across   2560 PEs...
 
                                           tmin          tmax          tavg          tstd  tfrac grain pemin pemax
-Total runtime                     26248.134311  26248.138591  26248.136394      0.000809  1.000     0     0  2559
-Initialization                       32.136515     32.583290     32.395330      0.095859  0.001     0     0  2559
-Main loop                         26191.920046  26192.382559  26191.985168      0.040753  0.998     0     0  2559
-Termination                          22.810388     22.946872     22.942331      0.003901  0.001     0     0  2559
+Total runtime                     26287.893639  26287.901330  26287.897255      0.001608  1.000     0     0  2559
+Initialization                       21.277480     21.787654     21.542368      0.109800  0.001     0     0  2559
+Main loop                         26242.975727  26243.422786  26243.037546      0.035904  0.998     0     0  2559
+Termination                          22.357244     22.432127     22.429275      0.002058  0.001     0     0  2559
  MPP_STACK high water mark=           0
-Application 75105359 resources: utime ~67066463s, stime ~87100s, Rss ~396572, inblocks ~772163032, outblocks ~966163560
+Application 78262561 resources: utime ~67193157s, stime ~85147s, Rss ~396892, inblocks ~909896880, outblocks ~1101166352

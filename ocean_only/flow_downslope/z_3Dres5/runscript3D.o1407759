@@ -271,6 +271,12 @@ WARNING from PE     0: MEKE_init: Initializing MEKE with a local equilibrium bal
 whalo =    4, ehalo =    4, shalo =    4, nhalo =    4
   X-AXIS =    4   4   4   4
   Y-AXIS =    4   4   4   4   4
+
+WARNING from PE     0: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
 MOM Time       0.000      0: En 2.771505E-04, MaxCFL  0.00000, Mass 1.089747652242E+16, Salt  34.87032951459, Temp  -0.54139176152
     Total Energy: 4285F9A2FCF6421C  3.0202406908882637E+12
     Total Mass:   1.0897476522424624E+16, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
@@ -7484,9 +7490,9 @@ WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY alrea
 Tabulating mpp_clock statistics across     20 PEs...
 
                                           tmin          tmax          tavg          tstd  tfrac grain pemin pemax
-Total runtime                       765.968329    765.968332    765.968330      0.000001  1.000     0     0    19
-Initialization                        0.708894      0.719379      0.713253      0.002743  0.001     0     0    19
-Main loop                           765.156094    765.158147    765.157998      0.000438  0.999     0     0    19
-Termination                           0.063773      0.064003      0.063989      0.000050  0.000     0     0    19
+Total runtime                       774.625327    774.625328    774.625327      0.000000  1.000     0     0    19
+Initialization                        0.929761      0.966342      0.936109      0.007395  0.001     0     0    19
+Main loop                           773.572506    773.599150    773.597772      0.005797  0.999     0     0    19
+Termination                           0.057363      0.057643      0.057625      0.000060  0.000     0     0    19
  MPP_STACK high water mark=           0
-Application 75087139 resources: utime ~15224s, stime ~87s, Rss ~102180, inblocks ~1202296, outblocks ~1645096
+Application 78262477 resources: utime ~15394s, stime ~86s, Rss ~102332, inblocks ~1415568, outblocks ~1862376

@@ -456,10 +456,10 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 ! === module MOM_thickness_diffuse ===
 KHTH = 0.0                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-DETANGLE_INTERFACES = True     !   [Boolean] default = False
+!DETANGLE_INTERFACES = False     !   [Boolean] default = False
                                 ! If defined add 3-d structured enhanced interface height
                                 ! diffusivities to horizonally smooth jagged layers.
-DETANGLE_TIMESCALE = 80.0       !   [s] default = 0.0
+!DETANGLE_TIMESCALE = 80.0       !   [s] default = 0.0
                                 ! A timescale over which maximally jagged grid-scale
                                 ! thickness variations are suppressed.  This must be
                                 ! longer than DT, or 0 to use DT.

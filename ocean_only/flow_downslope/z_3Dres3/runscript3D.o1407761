@@ -268,6 +268,12 @@ NOTE from PE     0: init_from_Z: min=  3.4914E+01 max=  3.4915E+01 Level=120 fie
 whalo =    4, ehalo =    4, shalo =    4, nhalo =    4
   X-AXIS =    5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5
   Y-AXIS =    5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5
+
+WARNING from PE     0: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
 MOM Time       0.000      0: En 2.731529E-04, MaxCFL  0.00000, Mass 1.091780638802E+16, Salt  34.86995276737, Temp  -0.53936856608
     Total Energy: 4285B2D68E4C622A  2.9822310014842705E+12
     Total Mass:   1.0917806388016806E+16, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
@@ -7481,9 +7487,9 @@ WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY alrea
 Tabulating mpp_clock statistics across    320 PEs...
 
                                           tmin          tmax          tavg          tstd  tfrac grain pemin pemax
-Total runtime                      2034.254578   2034.256855   2034.255856      0.000620  1.000     0     0   319
-Initialization                        1.993849      2.023141      2.006624      0.005722  0.001     0     0   319
-Main loop                          2031.426944   2031.442624   2031.429692      0.001671  0.999     0     0   319
-Termination                           0.748677      0.756467      0.754580      0.000933  0.000     0     0   319
+Total runtime                      2009.384132   2009.386575   2009.385341      0.000848  1.000     0     0   319
+Initialization                        2.731547      2.753196      2.742124      0.004866  0.001     0     0   319
+Main loop                          2005.864719   2005.868973   2005.866512      0.001004  0.998     0     0   319
+Termination                           0.710125      0.715210      0.715166      0.000283  0.000     0     0   319
  MPP_STACK high water mark=           0
-Application 75392753 resources: utime ~649772s, stime ~921s, Rss ~131040, inblocks ~31069152, outblocks ~38684144
+Application 78262505 resources: utime ~641586s, stime ~862s, Rss ~131076, inblocks ~36444352, outblocks ~44089416
