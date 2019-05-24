@@ -1,0 +1,28 @@
+
+WARNING from PE     0: adjustEtaToFitBathymetry: Thickness initial conditions were contracted to fit topography in   200000 places.
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20190228 085744.278: Memuse(MB) at Memory HiWaterMark=  1.121E+02  3.768E+02  5.292E+00  1.155E+02
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.9076733
+RM JobID:   1440708.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript3D
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Wed Feb 27 20:16:22 2019
+CurrTime:   Thu Feb 28 08:57:48 2019
+Walltime:   12:41:12 of 15:01:00
+ExitCode:   0
+BatchNode:  c3-batch3
+NodeList:   879,880,881,901,907,943,944,945,970,982,984,985,1006,1010,1011,1012,1013,1030,1031,1032,1033,1034,1035,1037,1038,1039,1040,1043,1128,1226,1227,1235,1236,1255,1323,1324,1325,1327,1328,1329,1330,1331,1332,1349,1371,1378,1379,1387,1388,1389,1390,1391,1392,1393,1394,1395,1403,1404,1405,1406,1407,1414,1415,1416,1418,1419,1420,1422,1423,1437,1445,1448,1449,1450,1451,1452,1517,1519,1520,1534
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/layer_3Dres1/runscript3D.o1440708
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/layer_3Dres1/runscript3D.e1440708
+========  END EPILOGUE  ========

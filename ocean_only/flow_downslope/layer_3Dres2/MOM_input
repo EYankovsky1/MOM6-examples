@@ -94,7 +94,7 @@ COORD_CONFIG = "ts_profile"     !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "Coord_file_new.nc"	! Temperature and salinity coordinates (1D arrays)
+COORD_FILE = "Coord_file.nc"	! Temperature and salinity coordinates (1D arrays)
 P_REF = 0.0E+07                 !   [Pa] default = 2.0E+07
                                 ! The pressure that is used for calculating the coordinate
                                 ! density.  (1 Pa = 1e4 dbar, so 2e7 is commonly used.)
@@ -158,7 +158,7 @@ F_0 = 1.43E-04                   !   [s-1] default = 0.0; 1.43E-04
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
-THICKNESS_CONFIG = "uniform"    !
+THICKNESS_CONFIG = "file"       !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -177,6 +177,8 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     sloshing - TBD AJA.
                                 !     seamount - TBD AJA.
                                 !     USER - call a user modified routine.
+THICKNESS_FILE="thickness_file.nc" !contains layer thicknesses h, not corrected for topography!
+ADJUST_THICKNESS=TRUE           ! Corrects thicknesses for topography
 TS_CONFIG = "file"              !
                                 ! A string that determines how the initial tempertures
                                 ! and salinities are specified for a new run:
@@ -278,6 +280,11 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the cube of
+                                ! the grid spacing to calculate the biharmonic viscosity.
+                                ! The final viscosity is the largest of this scaled
+                                ! viscosity, the Smagorinsky and Leith viscosities, and AH.
 SMAGORINSKY_KH = True           !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 SMAG_LAP_CONST = 0.15            !   [nondim] default = 0.0

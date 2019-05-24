@@ -1,0 +1,31 @@
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model/Kd_shear) NOT registered
+
+
+WARNING from PE     0: diag_util_mod::opening_file: module/field_name (ocean_model_z/Kd_shear) NOT registered
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20190208 011905.425: Memuse(MB) at Memory HiWaterMark=  9.491E+01  1.083E+02  1.218E+00  9.621E+01
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.8876747
+RM JobID:   1413563.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript2D
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Thu Feb  7 20:18:55 2019
+CurrTime:   Fri Feb  8 01:19:07 2019
+Walltime:   04:59:32 of 15:30:00
+ExitCode:   0
+BatchNode:  c3-batch2
+NodeList:   1240,1241,1242,1358
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_nomix/runscript2D.o1413563
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/z_nomix/runscript2D.e1413563
+========  END EPILOGUE  ========

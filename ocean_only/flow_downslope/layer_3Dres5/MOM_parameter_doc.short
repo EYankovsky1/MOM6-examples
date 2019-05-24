@@ -150,7 +150,7 @@ COORD_CONFIG = "ts_profile"     !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "Coord_file_new.nc" !
+COORD_FILE = "Coord_file.nc"    !
                                 ! The file from which the coordinate temperatures and
                                 ! salinities are read.
 
@@ -158,7 +158,7 @@ COORD_FILE = "Coord_file_new.nc" !
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "uniform"    !
+THICKNESS_CONFIG = "file"       !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -185,6 +185,12 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
+THICKNESS_FILE = "thickness_file.nc" !
+                                ! The name of the thickness file.
+ADJUST_THICKNESS = True         !   [Boolean] default = False
+                                ! If true, all mass below the bottom removed if the
+                                ! topography is shallower than the thickness input file
+                                ! would indicate.
 TS_CONFIG = "file"              !
                                 ! A string that determines how the initial tempertures
                                 ! and salinities are specified for a new run:
@@ -331,6 +337,11 @@ SMAGORINSKY_KH = True           !   [Boolean] default = False
 SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
                                 ! The nondimensional Laplacian Smagorinsky constant,
                                 ! often 0.15.
+AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the cube of
+                                ! the grid spacing to calculate the biharmonic viscosity.
+                                ! The final viscosity is the largest of this scaled
+                                ! viscosity, the Smagorinsky and Leith viscosities, and AH.
 
 ! === module MOM_vert_friction ===
 MAXVEL = 50.0                   !   [m s-1] default = 3.0E+08

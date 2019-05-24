@@ -1,0 +1,31 @@
+
+WARNING from PE     0: adjustEtaToFitBathymetry: Thickness initial conditions were contracted to fit topography in      320 places.
+
+
+WARNING from PE     0: MEKE_init: Initializing MEKE with a local equilibrium balance.
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20190227 205746.923: Memuse(MB) at Memory HiWaterMark=  9.016E+01  9.566E+01  1.536E+00  9.250E+01
+======== BEGIN EPILOGUE ========
+Moab JobID: gaea3.9077074
+RM JobID:   1440768.c3-sys0.ncrc.gov 
+State:      Running
+Name:       runscript3D
+User:       Elizabeth.Yankovsky
+Group:      gfdl
+Account:    gfdl_o
+Class:      urgent
+PList:      c3
+Partition:  c3
+StartCount: 1
+StartTime:  Wed Feb 27 20:46:40 2019
+CurrTime:   Wed Feb 27 20:57:47 2019
+Walltime:   00:10:58 of 05:00:00
+ExitCode:   0
+BatchNode:  c3-batch2
+NodeList:   127
+StdOut:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/layer_3Dres5/runscript3D.o1440768
+StdErr:     /lustre/f1/unswept/Elizabeth.Yankovsky/MOM6-examples/ocean_only/flow_downslope/layer_3Dres5/runscript3D.e1440768
+========  END EPILOGUE  ========
