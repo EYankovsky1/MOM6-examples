@@ -117,10 +117,10 @@ F_0 = 1.43E-04                  !   [s-1] default = 0.0
 ! === module MOM_restart ===
 
 ! === module MOM_tracer_flow_control ===
-USE_ELIZABETH_TRACER = True     !   [Boolean] default = False
-                                ! If true, use the Elizabeth_tracer tracer package.
+USE_RGC_TRACER = True           !   [Boolean] default = False
+                                ! If true, use the RGC_tracer tracer package.
 
-! === module Elizabeth_tracer ===
+! === module RGC_tracer ===
 SPONGE = True                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
@@ -203,12 +203,12 @@ Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
 Z_INIT_REMAP_OLD_ALG = False    !   [Boolean] default = True
                                 ! If false, uses the preferred remapping algorithm for initialization.
                                 ! If true, use an older, less robust algorithm for remapping.
-SPONGE_CONFIG = "Elizabeth"     ! default = "file"
+SPONGE_CONFIG = "RGC"           ! default = "file"
                                 ! A string that sets how the sponges are configured:
                                 !     file - read sponge properties from the file
                                 !       specified by (SPONGE_FILE).
                                 !     ISOMIP - apply ale sponge in the ISOMIP case
-                                !     Elizabeth - apply sponge in the Elizabeth case
+                                !     RGC - apply sponge in the rotating_gravity_current case
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     BFB - Sponge at the southern boundary of the domain

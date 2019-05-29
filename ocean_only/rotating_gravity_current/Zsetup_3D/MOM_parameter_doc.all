@@ -338,8 +338,8 @@ USE_DOME_TRACER = False         !   [Boolean] default = False
                                 ! If true, use the DOME_tracer tracer package.
 USE_ISOMIP_TRACER = False       !   [Boolean] default = False
                                 ! If true, use the ISOMIP_tracer tracer package.
-USE_ELIZABETH_TRACER = True     !   [Boolean] default = False
-                                ! If true, use the Elizabeth_tracer tracer package.
+USE_RGC_TRACER = True           !   [Boolean] default = False
+                                ! If true, use the RGC_tracer tracer package.
 USE_IDEAL_AGE_TRACER = False    !   [Boolean] default = False
                                 ! If true, use the ideal_age_example tracer package.
 USE_REGIONAL_DYES = False       !   [Boolean] default = False
@@ -360,10 +360,10 @@ USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
 USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
 
-! === module Elizabeth_tracer ===
-Elizabeth_TRACER_IC_FILE = ""   ! default = ""
+! === module RGC_tracer ===
+RGC_TRACER_IC_FILE = ""         ! default = ""
                                 ! The name of a file from which to read the initial
-                                ! conditions for the Elizabeth tracers, or blank to initialize
+                                ! conditions for the RGC tracers, or blank to initialize
                                 ! them internally.
 SPONGE = True                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
@@ -556,12 +556,12 @@ REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
                                 ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
                                 ! algorithm to push the initial grid to be consistent with the initial
                                 ! condition. Useful only for state-based and iterative coordinates.
-SPONGE_CONFIG = "Elizabeth"     ! default = "file"
+SPONGE_CONFIG = "RGC"           ! default = "file"
                                 ! A string that sets how the sponges are configured:
                                 !     file - read sponge properties from the file
                                 !       specified by (SPONGE_FILE).
                                 !     ISOMIP - apply ale sponge in the ISOMIP case
-                                !     Elizabeth - apply sponge in the Elizabeth case
+                                !     RGC - apply sponge in the rotating_gravity_current case
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     BFB - Sponge at the southern boundary of the domain
