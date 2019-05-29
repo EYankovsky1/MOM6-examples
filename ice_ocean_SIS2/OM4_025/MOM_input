@@ -24,7 +24,7 @@ DT = 900.0                      !   [s]
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 3600.0               !   [s] default = 900.0
+DT_THERM = 7200.0               !   [s] default = 900.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -37,11 +37,6 @@ THERMO_SPANS_COUPLING = True    !   [Boolean] default = False
                                 ! The actual thermodynamic timestep that is used in this
                                 ! case is the largest integer multiple of the coupling
                                 ! timestep that is less than or equal to DT_THERM.
-MIN_Z_DIAG_INTERVAL = 2.16E+04  !   [s] default = 0.0
-                                ! The minimum amount of time in seconds between
-                                ! calculations of depth-space diagnostics. Making this
-                                ! larger than DT_THERM reduces the  performance penalty
-                                ! of regridding to depth online.
 FRAZIL = True                   !   [Boolean] default = False
                                 ! If true, water freezes if it gets too cold, and the
                                 ! the accumulated heat deficit is returned in the
@@ -298,15 +293,21 @@ INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
                                 ! longitude grid.
 
 ! === module MOM_initialize_layers_from_Z ===
-TEMP_SALT_Z_INIT_FILE = "WOA05_pottemp_salt.nc" ! default = "temp_salt_z.nc"
+TEMP_SALT_Z_INIT_FILE = ""      ! default = "temp_salt_z.nc"
                                 ! The name of the z-space input file used to initialize
                                 ! temperatures (T) and salinities (S). If T and S are not
                                 ! in the same file, TEMP_Z_INIT_FILE and SALT_Z_INIT_FILE
                                 ! must be set.
-Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
+TEMP_Z_INIT_FILE = "woa13_decav_ptemp_monthly_fulldepth_01.nc" ! default = ""
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures, only.
+SALT_Z_INIT_FILE = "woa13_decav_s_monthly_fulldepth_01.nc" ! default = ""
+                                ! The name of the z-space input file used to initialize
+                                ! temperatures, only.
+Z_INIT_FILE_PTEMP_VAR = "ptemp_an" ! default = "ptemp"
                                 ! The name of the potential temperature variable in
                                 ! TEMP_Z_INIT_FILE.
-Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
+Z_INIT_FILE_SALT_VAR = "s_an"   ! default = "salt"
                                 ! The name of the salinity variable in
                                 ! SALT_Z_INIT_FILE.
 Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
@@ -578,15 +579,6 @@ MLE_MLD_DECAY_TIME = 2.592E+06  !   [s] default = 0.0
                                 ! the MLD deepens below the current running-mean the running-mean
                                 ! is instantaneously set to the current MLD.
 
-! === module MOM_diag_to_Z ===
-Z_OUTPUT_GRID_FILE = "analysis_vgrid_lev35.v1.nc" ! default = ""
-                                ! The file that specifies the vertical grid for
-                                ! depth-space diagnostics, or blank to disable
-                                ! depth-space output.
-!NK_ZSPACE (from file) = 35     !   [nondim]
-                                ! The number of depth-space levels.  This is determined
-                                ! from the size of the variable zw in the output grid file.
-
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 ENERGETICS_SFC_PBL = True       !   [Boolean] default = False
@@ -786,10 +778,12 @@ VAR_PEN_SW = True               !   [Boolean] default = False
                                 ! If true, use one of the CHL_A schemes specified by
                                 ! OPACITY_SCHEME to determine the e-folding depth of
                                 ! incoming short wave radiation.
-CHL_FILE = "seawifs_1998-2006_smoothed_2X.v20140616.nc" !
+CHL_FILE = "seawifs-clim-1997-2010.1440x1080.v20180328.nc" !
                                 ! CHL_FILE is the file containing chl_a concentrations in
                                 ! the variable CHL_A. It is used when VAR_PEN_SW and
                                 ! CHL_FROM_FILE are true.
+CHL_VARNAME = "chlor_a"         ! default = "CHL_A"
+                                ! Name of CHL_A variable in CHL_FILE.
 PEN_SW_NBANDS = 3               ! default = 1
                                 ! The number of bands of penetrating shortwave radiation.
 

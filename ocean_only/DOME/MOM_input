@@ -213,6 +213,18 @@ OBC_USER_CONFIG = "DOME"        ! default = "file"
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     USER - call a user modified routine.
+OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
+                                ! If true, sets relative vorticity to zero on open boundaries.
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the relative vorticity on open boundaries. This cannot
+                                ! be true if another OBC_XXX_VORTICITY option is True.
+OBC_ZERO_STRAIN = True          !   [Boolean] default = False
+                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if another OBC_XXX_STRAIN option is True.
 
 ! === module MOM_MEKE ===
 CDRAG = 0.002                   !   [nondim] default = 0.003
@@ -277,6 +289,11 @@ HBBL = 10.0                     !   [m]
 MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
                                 ! The maximum velocity allowed before the velocity
                                 ! components are truncated.
+VEL_UNDERFLOW = 1.0E-30         !   [m s-1] default = 0.0
+                                ! A negligibly small velocity magnitude below which velocity
+                                ! components are set to 0.  A reasonable value might be
+                                ! 1e-30 m/s, which is less than an Angstrom divided by
+                                ! the age of the universe.
 
 ! === module MOM_set_visc ===
 USE_JACKSON_PARAM = True        !   [Boolean] default = False
