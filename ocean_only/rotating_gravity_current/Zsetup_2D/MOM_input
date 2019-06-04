@@ -177,10 +177,6 @@ Z_INIT_FILE_SALT_VAR = "SALT"	!Variable name for salt
 Z_INIT_ALE_REMAPPING = True	!
 Z_INIT_REMAP_OLD_ALG = False	!
 REMAP_UV_USING_OLD_ALG = False	!
-Z_OUTPUT_GRID_FILE = "zgrid_output.nc" ! default = ""
-                                ! The file that specifies the vertical grid for
-                                ! depth-space diagnostics, or blank to disable
-                                ! depth-space output.
 SPONGE = True                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
@@ -540,11 +536,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] before: 2.88e04default 
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 20.0               !   [s] default = 300.0
-                                ! The time step for changing forcing, coupling with other
-                                ! components, or potentially writing certain diagnostics.
-                                ! The default value is given by DT.
-DAYMAX = 2880.0                  !   [hours] default = 12.0
+DAYMAX = 1440.0                  !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -555,7 +547,7 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 2880.0                 !   [hours] default = 0.0
+RESTINT = 1440.0                 !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
