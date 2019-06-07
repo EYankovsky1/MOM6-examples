@@ -289,7 +289,7 @@ SMAGORINSKY_KH = True           !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 SMAG_LAP_CONST = 0.15            !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant,
-                                ! typically 0.015 - 0.06.
+                                ! typically 0.15
 ! === module MOM_vert_friction ===
 NOSLIP = False                  !   [Boolean] default = False
                                 ! If true, no slip boundary conditions are used; otherwise
