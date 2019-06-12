@@ -206,9 +206,9 @@ SPONGE_CONFIG = "RGC"           ! default = "file"
                                 !     BFB - Sponge at the southern boundary of the domain
                                 !       for buoyancy-forced basin case.
                                 !     USER - call a user modified routine.
-IDEAL_IS_TNUDG = 10.0           !   [not defined] default = 0.0
+RGC_TNUDG = 10.0                !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+RGC_SPONGE_FILE = "sponge_IC3D.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 
@@ -357,9 +357,6 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 ! Parameterization of enhanced mixing due to convection via CVMix
 
 ! === module MOM_entrain_diffusive ===
-CORRECT_DENSITY = False         !   [Boolean] default = True
-                                ! If true, and USE_EOS is true, the layer densities are restored toward their
-                                ! target values by the diapycnal mixing, as described in Hallberg (MWR, 2000).
 
 ! === module MOM_set_diffusivity ===
 

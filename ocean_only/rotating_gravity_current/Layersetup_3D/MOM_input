@@ -208,7 +208,7 @@ SPONGE_CONFIG = "RGC"           ! default = "file"
                                 !     file - read sponge properties from the file
                                 !       specified by (SPONGE_FILE).
                                 !     ISOMIP - apply ale sponge in the ISOMIP case
-                                !     IDEAL_IS - apply sponge in the IDEAL_IS case
+                                !     RGC- apply sponge in the RGC case
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     BFB - Sponge at the southern boundary of the domain
@@ -216,9 +216,9 @@ SPONGE_CONFIG = "RGC"           ! default = "file"
                                 !     USER - call a user modified routine.
 MIN_THICKNESS = 1.0E-12         !   [m] default = 0.001
                                 ! Minimum layer thickness
-IDEAL_IS_TNUDG = 10.0            !   [not defined] default = 0.0
+RGC_TNUDG = 10.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+RGC_SPONGE_FILE = "sponge_IC3D.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 SPONGE_PTEMP_VAR = "Temp"       ! default = "Temp"
