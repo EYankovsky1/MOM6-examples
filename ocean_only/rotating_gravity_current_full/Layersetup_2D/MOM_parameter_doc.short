@@ -4,6 +4,8 @@
 
 ! === module MOM_unit_scaling ===
 ! Parameters for doing unit scaling of variables.
+THICKNESSDIFFUSE = True         !   [Boolean] default = False
+                                ! If true, interface heights are diffused with a coefficient of KHTH.
 DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
@@ -259,6 +261,10 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
 KV = 1.0E-05                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior. The molecular value, ~1e-6
                                 ! m2 s-1, may be used.
+
+! === module MOM_thickness_diffuse ===
+KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
+                                ! The background horizontal thickness diffusivity.
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
@@ -343,8 +349,6 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! use 0, or a negative value gives the fraction of the stable value. Setting
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
-
-! === module MOM_thickness_diffuse ===
 
 ! === module MOM_mixed_layer_restrat ===
 
@@ -476,7 +480,7 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 1440.0                 !   [hours]
+DAYMAX = 1446.0                 !   [hours]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.

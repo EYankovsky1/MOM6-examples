@@ -430,6 +430,9 @@ DTBT = 0                        !   [s or nondim] default = -0.98
 ! === module MOM_thickness_diffuse ===
 KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
+ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2019).
 THICKNESSDIFFUSE = True
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.

@@ -658,7 +658,7 @@ KD_SMOOTH = 1.0E-06             !   [not defined] default = 1.0E-06
 KHTH_USE_FGNV_STREAMFUNCTION = False !   [Boolean] default = False
                                 ! If true, use the streamfunction formulation of Ferrari et al., 2010, which
                                 ! effectively emphasizes graver vertical modes by smoothing in the vertical.
-ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
+ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
                                 ! If true, uses the symmetric instability parameterization
                                 ! (Yankovsky et al., 2019).
 MEKE_GM_SRC_ALT = False         !   [Boolean] default = False

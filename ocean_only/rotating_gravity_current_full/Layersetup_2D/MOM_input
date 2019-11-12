@@ -452,8 +452,9 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
-KHTH = 0.0                      !   [m2 s-1] default = 0.0
+KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
+THICKNESSDIFFUSE = True
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]
@@ -542,7 +543,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 1440.0                 !   [hours] default = 12.0
+DAYMAX = 1446.0                 !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

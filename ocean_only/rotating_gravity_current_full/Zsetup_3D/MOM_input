@@ -423,9 +423,9 @@ DTBT = 0                        !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
-KHTH = 0.0                      !   [m2 s-1] default = 0.0
+KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-
+THICKNESSDIFFUSE = True
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]
