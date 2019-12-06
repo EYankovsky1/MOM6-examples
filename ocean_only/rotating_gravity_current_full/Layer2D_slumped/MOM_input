@@ -276,6 +276,8 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+AH = 1.0E-4                     !   [m4 s-1] default = 0.0
+                                ! The background biharmonic horizontal viscosity.
 AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the cube of
                                 ! the grid spacing to calculate the biharmonic viscosity.
@@ -458,9 +460,6 @@ THICKNESSDIFFUSE = True
 ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
                                 ! If true, uses the symmetric instability parameterization
                                 ! (Yankovsky et al., 2019).
-KHTH_USE_FGNV_STREAMFUNCTION = True !   [Boolean] default = False
-                                ! If true, use the streamfunction formulation of Ferrari et al., 2010, which
-                                ! effectively emphasizes graver vertical modes by smoothing in the vertical.
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]
@@ -549,7 +548,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 1480.0                 !   [hours] default = 12.0
+DAYMAX = 1440.0                  !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

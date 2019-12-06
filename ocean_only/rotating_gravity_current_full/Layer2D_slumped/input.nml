@@ -1,6 +1,6 @@
  &MOM_input_nml
          output_directory = './',
-         input_filename = 'r' 
+         input_filename = 'n' 
          restart_input_dir = 'INPUT/',
          restart_output_dir = 'RESTART/',
          parameter_filename = 'MOM_input',
@@ -10,7 +10,7 @@
  /
 
  &fms_nml
-         domains_stack_size = 5000000,
+         domains_stack_size = 10000000,
          stack_size = 0 /
 
  &ocean_domains_nml
