@@ -19,15 +19,27 @@
 "ocean_model","tr_RGC1","tr_RGC1","prog","all",.false.,"none",2
 "ocean_model","GM_sfn_y","GM_sfn_y","prog","all",.false.,"none",2
 "ocean_model","GM_sfn_x","GM_sfn_x","prog","all",.false.,"none",2
-"ocean_model","Eliz_sfn_y","Eliz_sfn_y","prog","all",.false.,"none",1
-"ocean_model","Eliz_sfn_x","Eliz_sfn_x","prog","all",.false.,"none",1
-"ocean_model","Work3D_u","Work3D_u","prog","all",.false.,"none",1
-"ocean_model","Work3D_v","Work3D_v","prog","all",.false.,"none",1
-#"ocean_model","uhD_Eliz","uhD_Eliz","prog","all",.false.,"none",1
-#"ocean_model","vhD_Eliz","vhD_Eliz","prog","all",.false.,"none",1
+"ocean_model","GMwork","GMwork","prog","all",.false.,"none",2
+"ocean_model","Eliz_sfn_y","Eliz_sfn_y","prog","all",.false.,"none",2
+"ocean_model","Eliz_sfn_x","Eliz_sfn_x","prog","all",.false.,"none",2
+"ocean_model","Work3D_u","Work3D_u","prog","all",.false.,"none",2
+"ocean_model","Work3D_v","Work3D_v","prog","all",.false.,"none",2
+"ocean_model","Work3D_u1","Work3D_u1","prog","all",.false.,"none",2
+"ocean_model","Work3D_v1","Work3D_v1","prog","all",.false.,"none",2
+"ocean_model","Work3D_u2","Work3D_u2","prog","all",.false.,"none",2
+"ocean_model","Work3D_v2","Work3D_v2","prog","all",.false.,"none",2
+"ocean_model","Work3D_u_original","Work3D_u_original","prog","all",.false.,"none",2
+"ocean_model","Work3D_v_original","Work3D_v_original","prog","all",.false.,"none",2
+"ocean_model","Work_u","Work_u","prog","all",.false.,"none",2
+"ocean_model","Work_v","Work_v","prog","all",.false.,"none",2
+"ocean_model","Work_u_Eliz","Work_u_Eliz","prog","all",.false.,"none",2
+"ocean_model","Work_v_Eliz","Work_v_Eliz","prog","all",.false.,"none",2
+"ocean_model","Work_h","Work_h","prog","all",.false.,"none",2
+"ocean_model","Work_h_Eliz","Work_h_Eliz","prog","all",.false.,"none",2
+"ocean_model","Work3D_h_Eliz","Work3D_h_Eliz","prog","all",.false.,"none",2
 
-#"ocean_model","Kd_shear","Kd_shear","prog","all",.false.,"none",2
-#"ocean_model","Kd_layer","Kd_layer","prog","all",.false.,"none",2
+"ocean_model","Kd_shear","Kd_shear","prog","all",.false.,"none",2
+"ocean_model","Kd_layer","Kd_layer","prog","all",.false.,"none",2
 #"ocean_model","Khh","Khh","prog","all",.false.,"none",2
 #"ocean_model","Kv_u","Kv_u","prog","all",.false.,"none",2
 
