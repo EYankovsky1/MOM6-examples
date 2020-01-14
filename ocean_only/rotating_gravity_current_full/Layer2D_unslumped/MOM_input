@@ -51,7 +51,7 @@ DT = 20.0                       !   [s]
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 40.0                  !   [s] default = 300.0
+DT_THERM = 20.0                  !   [s] default = 300.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step.
@@ -73,6 +73,8 @@ EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
                                 ! should be used.  Currently, the valid choices are
                                 ! "LINEAR", "UNESCO", and "WRIGHT".
                                 ! This is only used if USE_EOS is true.
+!DRHO_DS = 0.8
+!DRHO_DT = -.1
 ! === module MOM_tracer_flow_control ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -276,6 +278,8 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+AH = 1.0E-4                     !   [m4 s-1] default = 0.0
+                                ! The background biharmonic horizontal viscosity.
 AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the cube of
                                 ! the grid spacing to calculate the biharmonic viscosity.
@@ -455,6 +459,9 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
 THICKNESSDIFFUSE = True
+ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2019).
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]
@@ -543,7 +550,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 1446.0                 !   [hours] default = 12.0
+DAYMAX = 1440.0                  !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
