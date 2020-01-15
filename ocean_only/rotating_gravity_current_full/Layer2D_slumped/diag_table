@@ -31,6 +31,8 @@
 "ocean_model","Work_h","Work_h","prog","all",.false.,"none",2
 "ocean_model","Work_h_Eliz","Work_h_Eliz","prog","all",.false.,"none",2
 "ocean_model","Work3D_h_Eliz","Work3D_h_Eliz","prog","all",.false.,"none",2
+"ocean_model","diag_Eliz_0","diag_Eliz_0","prog","all",.false.,"none",2
+"ocean_model","diag_Eliz_1","diag_Eliz_1","prog","all",.false.,"none",2
 
 "ocean_model","Kd_shear","Kd_shear","prog","all",.false.,"none",2
 "ocean_model","Kd_layer","Kd_layer","prog","all",.false.,"none",2
