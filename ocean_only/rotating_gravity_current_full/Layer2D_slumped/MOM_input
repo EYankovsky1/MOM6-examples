@@ -550,7 +550,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 300.0                  !   [hours] default = 12.0
+DAYMAX = 2880.0                  !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
