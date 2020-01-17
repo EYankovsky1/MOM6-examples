@@ -52,7 +52,7 @@ DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
                                 ! or the coupling timestep in coupled mode.)
-DT_THERM = 40.0                 !   [s] default = 20.0
+DT_THERM = 20.0                 !   [s] default = 20.0
                                 ! The thermodynamic and tracer advection time step. Ideally DT_THERM should be
                                 ! an integer multiple of DT and less than the forcing or coupling time-step,
                                 ! unless THERMO_SPANS_COUPLING is true, in which case DT_THERM can be an integer
@@ -70,7 +70,7 @@ HFREEZE = -1.0                  !   [m] default = -1.0
 INTERPOLATE_P_SURF = False      !   [Boolean] default = False
                                 ! If true, linearly interpolate the surface pressure over the coupling time
                                 ! step, using the specified value at the end of the step.
-DTBT_RESET_PERIOD = 40.0        !   [s] default = 40.0
+DTBT_RESET_PERIOD = 20.0        !   [s] default = 20.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0). If DTBT_RESET_PERIOD
                                 ! is negative, DTBT is set based only on information available at
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
@@ -1570,7 +1570,7 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
 DT_FORCING = 20.0               !   [s] default = 20.0
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
-DAYMAX = 20.0                   !   [hours]
+DAYMAX = 2880.0                 !   [hours]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
@@ -1582,7 +1582,7 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! for a time-stamped file, and odd (bit 0) for a non-time-stamped file. A
                                 ! non-time-stamped restart file is saved at the end of the run segment for any
                                 ! non-negative value.
-RESTINT = 10.0                  !   [hours] default = 0.0
+RESTINT = 720.0                 !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units of TIMEUNIT.  Use 0
                                 ! (the default) to not save incremental restart files at all.
 WRITE_CPU_STEPS = 1000          ! default = 1000

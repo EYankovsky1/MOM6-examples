@@ -208,7 +208,7 @@ SPONGE_ETA_VAR = "eta"          ! default = "eta"
 SPONGE_H_VAR = "h"              ! default = "h"
                                 ! The name of the layer thickness variable in
                                 ! SPONGE_STATE_FILE.
-SPONGE_UV = True                !   [Boolean] default = False
+SPONGE_UV = False               !   [Boolean] default = False
                                 ! Apply sponges in u and v, in addition to tracers.
 USE_RGC_TRACER = True           ! Using RGC passive tracer configuration.
 CONT_SHELF_LENGTH = 15.0        ! Where tracer is set to 1.0 at surface.
@@ -434,11 +434,9 @@ DTBT = 0                        !   [s or nondim] default = -0.98
 ! === module MOM_thickness_diffuse ===
 KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
+ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
                                 ! If true, uses the symmetric instability parameterization
                                 ! (Yankovsky et al., 2019).
-Eliz_frac_TKE_to_Kd = 1.0       !   [nondim] default = 1.0
-                                ! Fraction of TKE used to calculate diffusivity (0-1).
 THICKNESSDIFFUSE = True
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
@@ -527,7 +525,7 @@ MAXCPU = -1.0                   !   [wall-clock seconds] before: 2.88e04default 
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 2880.0                  !   [hours] default = 12.0
+DAYMAX = 1440.0                  !   [hours] default = 12.0
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -538,7 +536,7 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 720.0                 !   [hours] default = 0.0
+RESTINT = 1440.0                 !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.

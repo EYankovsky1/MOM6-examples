@@ -1,0 +1,18 @@
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid01491: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581207.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: got SIGCONT
+srun: got SIGCONT
+slurmstepd: error: *** STEP 268581209.0 ON nid01491 CANCELLED AT 2020-01-16T18:59:36 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 268581209 ON nid01491 CANCELLED AT 2020-01-16T18:59:36 ***
+srun: forcing job termination
+srun: forcing job termination
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00268: tasks 3,11,15,19,21,23,25,31: Exited with exit code 1
+srun: Terminating job step 268581211.0
+slurmstepd: error: *** STEP 268581211.0 ON nid00268 CANCELLED AT 2020-01-16T19:02:42 ***
+srun: error: nid00268: tasks 0-2,4-10,12-14,16-18,20,22,24,26-30: Terminated
+srun: Force Terminated job step 268581211.0
