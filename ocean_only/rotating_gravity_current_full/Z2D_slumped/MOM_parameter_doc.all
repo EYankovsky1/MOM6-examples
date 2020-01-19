@@ -717,6 +717,11 @@ KD_SMOOTH = 1.0E-06             !   [not defined] default = 1.0E-06
 KHTH_USE_FGNV_STREAMFUNCTION = False !   [Boolean] default = False
                                 ! If true, use the streamfunction formulation of Ferrari et al., 2010, which
                                 ! effectively emphasizes graver vertical modes by smoothing in the vertical.
+ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2020).
+Eliz_frac_TKE_to_Kd = 1.0       !   [nondim] default = 1.0
+                                ! Fraction of TKE used to calculate diffusivity (0-1).
 MEKE_GM_SRC_ALT = False         !   [Boolean] default = False
                                 ! If true, use the GM energy conversion form S^2*N^2*kappa rather
                                 ! than the streamfunction for the GM source term.

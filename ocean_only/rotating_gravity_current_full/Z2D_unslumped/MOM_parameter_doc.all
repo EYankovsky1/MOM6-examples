@@ -715,7 +715,7 @@ KHTH_USE_FGNV_STREAMFUNCTION = False !   [Boolean] default = False
                                 ! effectively emphasizes graver vertical modes by smoothing in the vertical.
 ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
                                 ! If true, uses the symmetric instability parameterization
-                                ! (Yankovsky et al., 2019).
+                                ! (Yankovsky et al., 2020).
 MEKE_GM_SRC_ALT = False         !   [Boolean] default = False
                                 ! If true, use the GM energy conversion form S^2*N^2*kappa rather
                                 ! than the streamfunction for the GM source term.
@@ -1547,7 +1547,7 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
 DT_FORCING = 20.0               !   [s] default = 20.0
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
-DAYMAX = 1440.0                 !   [hours]
+DAYMAX = 2880.0                 !   [hours]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.

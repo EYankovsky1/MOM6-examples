@@ -3,4 +3,5 @@
 #SBATCH --nodes=4
 #SBATCH -t 13:30:00
 
-srun --verbose --export=ALL --ntasks=128 ../../../build/intel/ocean_only/repro/MOM6
+srun --verbose --export=ALL --ntasks=128 ../../../build/intel/ocean_only/debug/MOM6
+#srun --verbose --export=ALL --ntasks=128 ../../../build/intel/ocean_only/debug/MOM6 >& outputfile
