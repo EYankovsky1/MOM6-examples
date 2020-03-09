@@ -462,6 +462,8 @@ THICKNESSDIFFUSE = True
 ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
                                 ! If true, uses the symmetric instability parameterization
                                 ! (Yankovsky et al., 2019).
+Eliz_frac_TKE_to_Kd = 1.0       !   [nondim] default = 1.0
+                                ! Fraction of TKE used to calculate diffusivity (0-1).
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]

@@ -462,6 +462,12 @@ KD = 1.0E-5                     !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
                                 ! may be used.
+THICKNESSDIFFUSE = True
+ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2019).
+!Eliz_frac_TKE_to_Kd = 1.0       !   [nondim] default = 1.0
+                                ! Fraction of TKE used to calculate diffusivity (0-1).
 ! === module MOM_entrain_diffusive ===
 CORRECT_DENSITY = False         !   [Boolean] default = True
                                 ! If true, and USE_EOS is true, the layer densities are

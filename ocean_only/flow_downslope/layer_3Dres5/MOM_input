@@ -206,7 +206,7 @@ SPONGE = True                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
-SPONGE_CONFIG = "Elizabeth"     ! default = "file"
+SPONGE_CONFIG = "RGC"           ! default = "file"
                                 ! A string that sets how the sponges are configured:
                                 !     file - read sponge properties from the file
                                 !       specified by (SPONGE_FILE).
@@ -219,9 +219,9 @@ SPONGE_CONFIG = "Elizabeth"     ! default = "file"
                                 !     USER - call a user modified routine.
 MIN_THICKNESS = 1.0E-12         !   [m] default = 0.001
                                 ! Minimum layer thickness
-IDEAL_IS_TNUDG = 10.0            !   [not defined] default = 0.0
+RGC_TNUDG = 10.0            !   [not defined] default = 0.0
                                 ! Nudging time scale for sponge layers (days)
-IDEAL_IS_SPONGE_FILE = "sponge_IC3D.nc" !
+RGC_SPONGE_FILE = "sponge_IC3D.nc" !
                                 ! The name of the file with temps., salts. and interfaces to
                                 !  damp toward.
 SPONGE_PTEMP_VAR = "Temp"       ! default = "Temp"
@@ -238,7 +238,7 @@ SPONGE_H_VAR = "h"              ! default = "h"
                                 ! SPONGE_STATE_FILE.
 SPONGE_UV = True                !   [Boolean] default = False
                                 ! Apply sponges in u and v, in addition to tracers.
-USE_ELIZABETH_TRACER = True     ! Using my passive tracer configuration.
+USE_RGC_TRACER = True           ! Using my passive tracer configuration.
 CONT_SHELF_LENGTH = 15.0        ! Where tracer is set to 1.0 at surface.
 ! === module MOM_lateral_mixing_coeffs ===
 BE = 0.7                        !   [nondim] default = 0.6
@@ -280,6 +280,8 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+!AH = 1.0E-4                     !   [m4 s-1] default = 0.0
+                                ! The background biharmonic horizontal viscosity.
 AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the cube of
                                 ! the grid spacing to calculate the biharmonic viscosity.
@@ -484,13 +486,6 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 ! === module MOM_thickness_diffuse ===
 KHTH = 1.0E-4                   !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
-!DETANGLE_INTERFACES = True     !   [Boolean] default = False
-                                ! If defined add 3-d structured enhanced interface height
-                                ! diffusivities to horizonally smooth jagged layers.
-!DETANGLE_TIMESCALE = 600.0      !   [s] default = 0.0
-                                ! A timescale over which maximally jagged grid-scale
-                                ! thickness variations are suppressed.  This must be
-                                ! longer than DT, or 0 to use DT.
 KD = 1.0E-5                     !   [m2 s-1]
                                 ! The background diapycnal diffusivity of density in the
                                 ! interior. Zero or the molecular value, ~1e-7 m2 s-1,

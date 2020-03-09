@@ -151,60 +151,6 @@ COORD_FILE = "Coord_file.nc"    !
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "file"       !
-                                ! A string that determines how the initial layer thicknesses are specified for a
-                                ! new run:
-                                !     file - read interface heights from the file specified
-                                !     thickness_file - read thicknesses from the file specified
-                                !       by (THICKNESS_FILE).
-                                !     coord - determined by ALE coordinate.
-                                !     uniform - uniform thickness layers evenly distributed
-                                !       between the surface and MAXIMUM_DEPTH.
-                                !     list - read a list of positive interface depths.
-                                !     DOME - use a slope and channel configuration for the
-                                !       DOME sill-overflow test case.
-                                !     ISOMIP - use a configuration for the
-                                !       ISOMIP test case.
-                                !     benchmark - use the benchmark test case thicknesses.
-                                !     Neverland - use the Neverland test case thicknesses.
-                                !     search - search a density profile for the interface
-                                !       densities. This is not yet implemented.
-                                !     circle_obcs - the circle_obcs test case is used.
-                                !     DOME2D - 2D version of DOME initialization.
-                                !     adjustment2d - 2D lock exchange thickness ICs.
-                                !     sloshing - sloshing gravity thickness ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     soliton - Equatorial Rossby soliton.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     USER - call a user modified routine.
-THICKNESS_FILE = "thickness_file.nc" !
-                                ! The name of the thickness file.
-ADJUST_THICKNESS = True         !   [Boolean] default = False
-                                ! If true, all mass below the bottom removed if the topography is shallower than
-                                ! the thickness input file would indicate.
-TS_CONFIG = "file"              !
-                                ! A string that determines how the initial tempertures and salinities are
-                                ! specified for a new run:
-                                !     file - read velocities from the file specified
-                                !       by (TS_FILE).
-                                !     fit - find the temperatures that are consistent with
-                                !       the layer densities and salinity S_REF.
-                                !     TS_profile - use temperature and salinity profiles
-                                !       (read from TS_FILE) to set layer densities.
-                                !     benchmark - use the benchmark test case T & S.
-                                !     linear - linear in logical layer space.
-                                !     DOME2D - 2D DOME initialization.
-                                !     ISOMIP - ISOMIP initialization.
-                                !     adjustment2d - 2d lock exchange T/S ICs.
-                                !     sloshing - sloshing mode T/S ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
-                                !     USER - call a user modified routine.
-TS_FILE = "IC_TS.nc"            !
-                                ! The initial condition file for temperature.
 SPONGE_CONFIG = "RGC"           ! default = "file"
                                 ! A string that sets how the sponges are configured:
                                 !     file - read sponge properties from the file
@@ -260,6 +206,9 @@ KV = 1.0E-05                    !   [m2 s-1]
 ! === module MOM_thickness_diffuse ===
 KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
+ELIZABETH_DIFFUSE = True        !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2020).
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme

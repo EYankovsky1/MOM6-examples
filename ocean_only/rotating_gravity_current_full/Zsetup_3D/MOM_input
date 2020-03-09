@@ -46,12 +46,12 @@ BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! NKML+NKBL have variable densities. There must be at
                                 ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true.
                                 ! The default is the same setting as ENABLE_THERMODYNAMICS.
-DT = 30.0                       !   [s]
+DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 30.0                 !   [s] default = 300.0
+DT_THERM = 60.0                 !   [s] default = 300.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step.
@@ -250,6 +250,11 @@ KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the cube of
+                                ! the grid spacing to calculate the biharmonic viscosity.
+                                ! The final viscosity is the largest of this scaled
+                                ! viscosity, the Smagorinsky and Leith viscosities, and AH.
 SMAGORINSKY_KH = True           !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 SMAG_LAP_CONST = 0.15            !   [nondim] default = 0.0
@@ -426,6 +431,11 @@ DTBT = 0                        !   [s or nondim] default = -0.98
 KHTH = 1.0E-4                      !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
 THICKNESSDIFFUSE = True
+ELIZABETH_DIFFUSE = False       !   [Boolean] default = False
+                                ! If true, uses the symmetric instability parameterization
+                                ! (Yankovsky et al., 2019).
+!Eliz_frac_TKE_to_Kd = 1.0       !   [nondim] default = 1.0
+                                ! Fraction of TKE used to calculate diffusivity (0-1).
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 KD = 1.0E-5                     !   [m2 s-1]
@@ -437,6 +447,11 @@ KD = 1.0E-5                     !   [m2 s-1]
                                 ! restored toward their target values by the diapycnal
                                 ! mixing, as described in Hallberg (MWR, 2000).
 
+! === module MOM_entrain_diffusive ===
+CORRECT_DENSITY = False         !   [Boolean] default = True
+                                ! If true, and USE_EOS is true, the layer densities are
+                                ! restored toward their target values by the diapycnal
+                                ! mixing, as described in Hallberg (MWR, 2000).
 ! === module MOM_tracer_hor_diff ===
 KHTR = 1.0E-4                   !   [m2 s-1] default = 0.0
                                 ! The background along-isopycnal tracer diffusivity.

@@ -7,10 +7,17 @@
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
                                 ! layered isopycnal algorithm.
-DT = 30.0                       !   [s]
+THICKNESSDIFFUSE = True         !   [Boolean] default = False
+                                ! If true, interface heights are diffused with a coefficient of KHTH.
+DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
                                 ! or the coupling timestep in coupled mode.)
+DT_THERM = 60.0                 !   [s] default = 20.0
+                                ! The thermodynamic and tracer advection time step. Ideally DT_THERM should be
+                                ! an integer multiple of DT and less than the forcing or coupling time-step,
+                                ! unless THERMO_SPANS_COUPLING is true, in which case DT_THERM can be an integer
+                                ! multiple of the coupling timestep.  By default DT_THERM is set to DT.
 C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
@@ -252,6 +259,10 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
 KV = 1.0E-05                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior. The molecular value, ~1e-6
                                 ! m2 s-1, may be used.
+
+! === module MOM_thickness_diffuse ===
+KHTH = 1.0E-04                  !   [m2 s-1] default = 0.0
+                                ! The background horizontal thickness diffusivity.
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
@@ -297,6 +308,10 @@ SMAGORINSKY_KH = True           !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
                                 ! The nondimensional Laplacian Smagorinsky constant, often 0.15.
+AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the cube of the grid spacing to
+                                ! calculate the biharmonic viscosity. The final viscosity is the largest of this
+                                ! scaled viscosity, the Smagorinsky and Leith viscosities, and AH.
 
 ! === module MOM_vert_friction ===
 HMIX_FIXED = 20.0               !   [m]
@@ -339,8 +354,6 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
 
-! === module MOM_thickness_diffuse ===
-
 ! === module MOM_mixed_layer_restrat ===
 
 ! === module MOM_diabatic_driver ===
@@ -357,6 +370,9 @@ DTBT = 0.0                      !   [s or nondim] default = -0.98
 ! Parameterization of enhanced mixing due to convection via CVMix
 
 ! === module MOM_entrain_diffusive ===
+CORRECT_DENSITY = False         !   [Boolean] default = True
+                                ! If true, and USE_EOS is true, the layer densities are restored toward their
+                                ! target values by the diapycnal mixing, as described in Hallberg (MWR, 2000).
 
 ! === module MOM_set_diffusivity ===
 

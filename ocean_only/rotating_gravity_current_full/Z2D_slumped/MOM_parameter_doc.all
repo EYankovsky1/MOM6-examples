@@ -1565,7 +1565,7 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! for a time-stamped file, and odd (bit 0) for a non-time-stamped file. A
                                 ! non-time-stamped restart file is saved at the end of the run segment for any
                                 ! non-negative value.
-RESTINT = 720.0                 !   [hours] default = 0.0
+RESTINT = 1440.0                !   [hours] default = 0.0
                                 ! The interval between saves of the restart file in units of TIMEUNIT.  Use 0
                                 ! (the default) to not save incremental restart files at all.
 WRITE_CPU_STEPS = 1000          ! default = 1000
