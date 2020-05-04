@@ -41,22 +41,16 @@
 
 
 # z output
-"ocean_model_z","temp","temp","prog_z","all",.false.,"none",2
-"ocean_model_z","salt","salt","prog_z","all",.false.,"none",2
-"ocean_model_z","u","u","prog_z","all",.false.,"none",2
-"ocean_model_z","v","v","prog_z","all",.false.,"none",2
-"ocean_model_z","tr_RGC1","tr_RGC1","prog_z","all",.false.,"none",2
-"ocean_model_z","rhopot0","rhopot0","prog_z","all",.false.,"none",2
-"ocean_model_z","rhoinsitu","rhoinsitu","prog_z","all",.false.,"none",2
-#"ocean_model_z","GM_sfn_unlim_y","GM_sfn_unlim_y","prog_z","all",.false.,"none",1
-#"ocean_model_z","GM_sfn_unlim_x","GM_sfn_unlim_x","prog_z","all",.false.,"none",1
-#"ocean_model_z","GM_sfn_y","GM_sfn_y","prog_z","all",.false.,"none",2
-#"ocean_model_z","GM_sfn_x","GM_sfn_x","prog_z","all",.false.,"none",2
+#"ocean_model_z","temp","temp","prog_z","all",.false.,"none",2
+#"ocean_model_z","salt","salt","prog_z","all",.false.,"none",2
+#"ocean_model_z","u","u","prog_z","all",.false.,"none",2
+#"ocean_model_z","v","v","prog_z","all",.false.,"none",2
+#"ocean_model_z","tr_RGC1","tr_RGC1","prog_z","all",.false.,"none",2
+#"ocean_model_z","rhopot0","rhopot0","prog_z","all",.false.,"none",2
+#"ocean_model_z","rhoinsitu","rhoinsitu","prog_z","all",.false.,"none",2
 
-"ocean_model_z","Kd_shear","Kd_shear","prog_z","all",.false.,"none",2
-"ocean_model_z","Kd_layer","Kd_layer","prog_z","all",.false.,"none",2
-#"ocean_model_z","Khh","Khh","prog_z","all",.false.,"none",2
-#"ocean_model_z","Kv_u","Kv_u","prog_z","all",.false.,"none",2
+#"ocean_model_z","Kd_shear","Kd_shear","prog_z","all",.false.,"none",2
+#"ocean_model_z","Kd_layer","Kd_layer","prog_z","all",.false.,"none",2
 #=============================================================================================
 #
 #====> This file can be used with diag_manager/v2.0a (or higher) <====
