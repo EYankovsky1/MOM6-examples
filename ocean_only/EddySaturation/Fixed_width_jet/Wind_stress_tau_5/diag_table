@@ -1,0 +1,21 @@
+"Channel"
+1 1 1 0 0 0
+
+"prog",     10, "days",  1, "days", "Time",
+"prog_avg", 10, "days",  1, "days", "Time",
+
+# Instantaneous diagnostics
+"ocean_model","u",   "u",   "prog","all",.false.,"none",2
+"ocean_model","v",   "v",   "prog","all",.false.,"none",2
+"ocean_model","h",   "h",   "prog","all",.false.,"none",2
+"ocean_model","e",   "e",   "prog","all",.false.,"none",2
+"ocean_model","uh",   "uh",   "prog","all",.false.,"none",2
+"ocean_model","vh",   "vh",   "prog","all",.false.,"none",2
+
+# Time-averaged diagnostics
+"ocean_model","u",   "u",   "prog_avg","all",.true.,"none",2
+"ocean_model","v",   "v",   "prog_avg","all",.true.,"none",2
+"ocean_model","h",   "h",   "prog_avg","all",.true.,"none",2
+"ocean_model","uh",   "uh",   "prog_avg","all",.true.,"none",2
+"ocean_model","vh",   "vh",   "prog_avg","all",.true.,"none",2
+"ocean_model","taux_bot",   "taux_bot",   "prog_avg","all",.true.,"none",2
