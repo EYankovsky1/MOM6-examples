@@ -1,0 +1,110 @@
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid01491: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581207.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: got SIGCONT
+srun: got SIGCONT
+slurmstepd: error: *** STEP 268581209.0 ON nid01491 CANCELLED AT 2020-01-16T18:59:36 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 268581209 ON nid01491 CANCELLED AT 2020-01-16T18:59:36 ***
+srun: forcing job termination
+srun: forcing job termination
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00268: tasks 3,11,15,19,21,23,25,31: Exited with exit code 1
+srun: Terminating job step 268581211.0
+slurmstepd: error: *** STEP 268581211.0 ON nid00268 CANCELLED AT 2020-01-16T19:02:42 ***
+srun: error: nid00268: tasks 0-2,4-10,12-14,16-18,20,22,24,26-30: Terminated
+srun: Force Terminated job step 268581211.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00271: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581237.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00021: tasks 0,2-25,27-31: Exited with exit code 1
+srun: Terminating job step 268581250.0
+slurmstepd: error: *** STEP 268581250.0 ON nid00021 CANCELLED AT 2020-01-16T20:48:43 ***
+srun: error: nid00021: tasks 1,26: Terminated
+srun: Force Terminated job step 268581250.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00141: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581619.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid00141: task 23: Exited with exit code 1
+srun: Terminating job step 268581626.0
+slurmstepd: error: *** STEP 268581626.0 ON nid00141 CANCELLED AT 2020-01-17T20:22:41 ***
+srun: error: nid00141: tasks 0-5,7-19,21-22,24-31: Terminated
+srun: error: nid00141: tasks 6,20: Terminated
+srun: Force Terminated job step 268581626.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02125: tasks 2,12,16-17,20,24: Exited with exit code 1
+srun: Terminating job step 268581646.0
+slurmstepd: error: *** STEP 268581646.0 ON nid02125 CANCELLED AT 2020-01-17T20:31:46 ***
+srun: error: nid02125: tasks 0-1,3-11,13-15,18-19,21-23,25-31: Terminated
+srun: Force Terminated job step 268581646.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02268: tasks 4,6,13,19-24,26,29,31: Exited with exit code 1
+srun: Terminating job step 268581651.0
+slurmstepd: error: *** STEP 268581651.0 ON nid02268 CANCELLED AT 2020-01-17T20:49:28 ***
+srun: error: nid02268: tasks 0-3,5,7-12,14-18,25,27-28,30: Terminated
+srun: Force Terminated job step 268581651.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: got SIGCONT
+slurmstepd: error: *** STEP 268581662.0 ON nid01526 CANCELLED AT 2020-01-17T20:50:54 ***
+slurmstepd: error: *** JOB 268581662 ON nid01526 CANCELLED AT 2020-01-17T20:50:54 ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: forcing job termination
+srun: forcing job termination
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid01526: tasks 1,4,8,10-12,18,21,23,27,29-30: Exited with exit code 1
+srun: Terminating job step 268581663.0
+slurmstepd: error: *** STEP 268581663.0 ON nid01526 CANCELLED AT 2020-01-17T20:54:02 ***
+srun: error: nid01526: tasks 0,2-3,5-7,9,13-17,19-20,22,24-26,28,31: Terminated
+srun: Force Terminated job step 268581663.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+slurmstepd: error: _is_a_lwp: 1 read() attempts on /proc/1625/status failed: No such process
+srun: error: nid01526: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581665.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02489: tasks 1,7,11,13,15,29,31: Exited with exit code 1
+srun: Terminating job step 268581666.0
+slurmstepd: error: *** STEP 268581666.0 ON nid02489 CANCELLED AT 2020-01-17T21:02:38 ***
+slurmstepd: error: _is_a_lwp: open() /proc/58653/status failed: No such file or directory
+srun: error: nid02489: tasks 0,2-6,8-10,12,14,16-28,30: Terminated
+srun: Force Terminated job step 268581666.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02489: tasks 0-31: Exited with exit code 1
+srun: Terminating job step 268581669.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 268581670.0 ON nid02542 CANCELLED AT 2020-01-17T21:39:43 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 268581670 ON nid02542 CANCELLED AT 2020-01-17T21:39:43 DUE TO TIME LIMIT ***
+srun: got SIGCONT
+srun: forcing job termination
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02682: tasks 7,9,12,16,20,26-27,29-30: Exited with exit code 1
+srun: Terminating job step 268581789.0
+slurmstepd: error: *** STEP 268581789.0 ON nid02682 CANCELLED AT 2020-01-17T22:14:03 ***
+srun: error: nid02682: tasks 0-6,8,10-11,13-15,17-19,21-25,28,31: Terminated
+srun: Force Terminated job step 268581789.0
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 268581790.0 ON nid02682 CANCELLED AT 2020-01-17T22:45:37 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 268581790 ON nid02682 CANCELLED AT 2020-01-17T22:45:37 DUE TO TIME LIMIT ***
+srun: got SIGCONT
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: got SIGCONT
+slurmstepd: error: *** STEP 268581805.0 ON nid02094 CANCELLED AT 2020-01-17T23:06:00 ***
+slurmstepd: error: *** JOB 268581805 ON nid02094 CANCELLED AT 2020-01-17T23:06:00 ***
+srun: forcing job termination
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: forcing job termination
+srun: forcing job termination
++ /ncrc/sw/gaea/.swci/0-login/opt/spack/20180512/linux-sles12-x86_64/gcc-4.8.5/allinea-forge-7.1.0-fhjjy6z3p7whkiqpog46ktm4izisqe34/bin/ddt-mpirun --ddthost gaea13,10.7.99.13,192.188.179.84,gaea13.ncrc.gov,10.10.32.133 --ddtport 4242 --ddtsession 1 --ddtsessionfile /ncrc/home1/Elizabeth.Yankovsky/.allinea/session/gaea13-1 --ddtshareddirectory /ncrc/home1/Elizabeth.Yankovsky -n 32 /lustre/f2/dev/gfdl/Elizabeth.Yankovsky/MOM6-examples/build/intel/ocean_only/debug/MOM6
+srun: error: nid02094: tasks 0-8,10-31: Exited with exit code 1
+srun: Terminating job step 268581806.0
+slurmstepd: error: *** STEP 268581806.0 ON nid02094 CANCELLED AT 2020-01-17T23:12:16 ***
+srun: error: nid02094: task 9: Terminated
+srun: Force Terminated job step 268581806.0
