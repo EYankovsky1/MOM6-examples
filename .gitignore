@@ -20,6 +20,7 @@ ocean.stats.*
 seaice.stats
 seaice.stats.*
 MOM_parameter_doc.*
+core
 # Ignore python .pyc files
 *.pyc
 .ipynb_checkpoints
